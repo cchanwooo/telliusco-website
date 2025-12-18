@@ -2,6 +2,13 @@ import Link from 'next/link'
 import styles from './page.module.css'
 import { getDictionary } from '../../get-dictionary'
 
+export const metadata = {
+  title: 'Telliusco Staffing',
+  openGraph: {
+    title: 'Telliusco Staffing',
+  },
+}
+
 export default async function Home(props) {
   const params = await props.params;
   const { lang } = params;

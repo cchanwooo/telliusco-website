@@ -13,8 +13,22 @@ export async function generateStaticParams() {
 }
 
 export const metadata = {
-  title: 'Telliusco Staffing Solutions',
-  description: 'Reliable Staffing Solutions Across the Southeast - Georgia, Alabama, Texas, Tennessee',
+  title: {
+    template: '%s | Telliusco Staffing',
+    default: 'Telliusco Staffing',
+  },
+  description: 'Reliable Staffing Across the Southeast - Georgia, Alabama, Texas, Tennessee',
+  openGraph: {
+    type: 'website',
+    siteName: 'Telliusco Staffing',
+    title: 'Telliusco Staffing',
+    description: 'Reliable Staffing Across the Southeast - Georgia, Alabama, Texas, Tennessee',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Telliusco Staffing',
+    description: 'Reliable Staffing Across the Southeast - Georgia, Alabama, Texas, Tennessee',
+  },
 }
 
 export default async function RootLayout(props) {

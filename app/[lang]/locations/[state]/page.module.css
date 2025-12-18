@@ -1,0 +1,114 @@
+.hero {
+    text-align: center;
+    padding: 4rem 0 3rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.cityList {
+    margin-bottom: 4rem;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1e3a8a;
+}
+
+.cityGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cityCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cityCard:hover {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.cityName {
+    font-size: 1.125rem;
+}
+
+.arrow {
+    font-size: 1.5rem;
+    color: #3b82f6;
+    transition: transform 0.3s ease;
+}
+
+.cityCard:hover .arrow {
+    transform: translateX(4px);
+}
+
+.ctaSection {
+    text-align: center;
+    padding: 3rem 0;
+    background: #f9fafb;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+.ctaSection h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;
+}
+
+.ctaGroup {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.125rem;
+    }
+
+    .cityGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ctaSection h2 {
+        font-size: 1.5rem;
+    }
+}
