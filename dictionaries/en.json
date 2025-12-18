@@ -89,7 +89,7 @@
   },
   "locations": {
     "title": "Our Service Areas",
-    "subtitle": "Local staffing solutions across the Southeast. We know your market.",
+    "subtitle": "Local staffing services across the Southeast. We know your market.",
     "intro": "Telliusco provides dedicated staffing support in Georgia, Alabama, Texas, and Tennessee. Our local offices understand the unique labor markets of each city we serve.",
     "visitPage": "Visit City Page"
   },
@@ -168,7 +168,7 @@
   },
   "hire": {
     "title": "Hire Talent",
-    "subtitle": "Reliable Workforce Solutions for Your Business",
+    "subtitle": "Reliable Workforce Support for Your Business",
     "intro": "Stop worrying about no-shows and turnover. We provide a steady stream of vetted, safety-conscious workers.",
     "rolesTitle": "Roles We Fill",
     "processTitle": "How it works",
@@ -246,6 +246,6 @@
   },
   "seo": {
     "defaultTitle": "Telliusco Staffing | Reliable Workers in GA, AL, TX, TN",
-    "defaultDesc": "Leading staffing agency serving Georgia, Alabama, Texas, and Tennessee. Quick reliable solutions for manufacturing, warehouse, and office staffing."
+    "defaultDesc": "Leading staffing agency serving Georgia, Alabama, Texas, and Tennessee. Quick reliable services for manufacturing, warehouse, and office staffing."
   }
 }

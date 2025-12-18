@@ -89,7 +89,7 @@
     },
     "locations": {
         "title": "Nuestras Áreas de Servicio",
-        "subtitle": "Soluciones de personal local en todo el Sureste. Conocemos su mercado.",
+        "subtitle": "Servicios de personal local en todo el Sureste. Conocemos su mercado.",
         "intro": "Telliusco brinda apoyo de personal dedicado en Georgia, Alabama, Texas y Tennessee. Nuestras oficinas locales entienden los mercados laborales únicos de cada ciudad que servimos.",
         "visitPage": "Visitar Página de la Ciudad"
     },
@@ -168,7 +168,7 @@
     },
     "hire": {
         "title": "Contratar Talento",
-        "subtitle": "Soluciones de fuerza laboral confiables para su negocio",
+        "subtitle": "Apoyo de fuerza laboral confiable para su negocio",
         "intro": "Deje de preocuparse por las inasistencias y la rotación. Proporcionamos un flujo constante de trabajadores examinados y conscientes de la seguridad.",
         "rolesTitle": "Roles que Cubrimos",
         "processTitle": "Cómo funciona",
@@ -246,6 +246,6 @@
     },
     "seo": {
         "defaultTitle": "Telliusco Staffing | Trabajadores Confiables en GA, AL, TX, TN",
-        "defaultDesc": "Agencia de personal líder sirviendo a Georgia, Alabama, Texas y Tennessee. Soluciones rápidas y confiables para personal de manufactura, almacén y oficina."
+        "defaultDesc": "Agencia de personal líder sirviendo a Georgia, Alabama, Texas y Tennessee. Servicios rápidos y confiables para personal de manufactura, almacén y oficina."
     }
 }

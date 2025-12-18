@@ -35,7 +35,7 @@ export async function generateMetadata(props) {
 
     return {
         title: `${stateName} Staffing Agency Locations | Telliusco`,
-        description: `Find Telliusco staffing agency locations in ${stateName}. We provide temporary, temp-to-hire, and direct hire staffing solutions.`,
+        description: `Find Telliusco staffing agency locations in ${stateName}. We provide temporary, temp-to-hire, and direct hire staffing services.`,
         alternates: {
             canonical: `/locations/${state.toLowerCase()}`,
         }
