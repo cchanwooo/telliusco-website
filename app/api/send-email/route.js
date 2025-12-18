@@ -13,7 +13,11 @@ export async function POST(request) {
 
     try {
         const body = await request.json();
-        const { type, data, lang = 'EN' } = body;
+
+        // Handle both flattened body (from updated HireForm) and nested data (from ApplyForm)
+        const type = body.type;
+        const lang = (body.lang || 'EN').toUpperCase();
+        const data = body.data || body; // Fallback to body if data is not present
 
         let payload = {};
 
@@ -23,29 +27,30 @@ export async function POST(request) {
                 fullName: data.fullName || "",
                 email: data.email || "",
                 phone: data.phone || "",
-                cityState: data.location || "",
-                desiredRole: data.role || "",
+                cityState: data.location || data.cityState || "",
+                desiredRole: data.role || data.desiredRole || "",
                 availability: data.availability || "",
                 message: data.message || "",
                 source: "Apply Page",
-                lang: lang.toUpperCase()
+                lang: lang
             };
         } else if (type === 'hire') {
-            // Forward hire form data as well to maintain functionality
+            // Updated to match exactly what Google Sheets (Apps Script) expects based on the screenshot/headers
+            // Using PascalCase keys for "Company", "Contact", "RoleNeeded" to fix missing fields issue
             payload = {
                 type: "hire",
-                companyName: data.companyName || "",
-                contactName: data.contactName || "",
-                email: data.email || "",
-                phone: data.phone || "",
-                cityState: data.location || "",
-                desiredRole: data.role || "",
-                headcount: data.headcount || "",
-                shift: data.shift || "",
-                startDate: data.startDate || "",
-                message: data.message || "",
-                source: "Hire Talent",
-                lang: lang.toUpperCase()
+                Company: data.company || data.companyName || "",
+                Contact: data.contact || data.contactName || "",
+                Email: data.email || "",
+                Phone: data.phone || "",
+                CityState: data.cityState || data.location || "",
+                RoleNeeded: data.roleNeeded || data.role || "",
+                Headcount: data.headcount || "",
+                Shift: data.shift || "",
+                StartDate: data.startDate || "",
+                Message: data.message || "",
+                Source: "Hire Talent",
+                Lang: lang
             };
         } else {
             console.warn('Unknown submission type:', type);
