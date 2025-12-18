@@ -40,7 +40,7 @@ export default async function Apply(props) {
                     </div>
 
                     <div style={{ marginTop: '3rem', padding: '2rem', background: '#f5f5f5', borderRadius: '8px' }}>
-                        <ApplyForm t={dictionary.forms} />
+                        <ApplyForm t={dictionary.forms} lang={lang} />
                     </div>
 
                     <p style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#666', textAlign: 'center' }}>

@@ -20,7 +20,7 @@ export default async function Hire(props) {
                     </p>
 
                     <div style={{ marginBottom: '4rem', padding: '2rem', background: '#f5f5f5', borderRadius: '8px' }}>
-                        <HireForm t={dictionary.forms} />
+                        <HireForm t={dictionary.forms} lang={lang} />
                     </div>
 
                     <div style={{ marginBottom: '4rem' }}>

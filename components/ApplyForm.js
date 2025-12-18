@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styles from './Form.module.css';
 
-export default function ApplyForm({ t }) {
+export default function ApplyForm({ t, lang }) {
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
     async function handleSubmit(e) {
@@ -19,7 +19,7 @@ export default function ApplyForm({ t }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ type: 'apply', data }),
+                body: JSON.stringify({ type: 'apply', data, lang }),
             });
 
             if (res.ok) {

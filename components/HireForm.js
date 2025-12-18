@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import styles from './Form.module.css';
 
-export default function HireForm({ t }) {
+export default function HireForm({ t, lang }) {
     const [status, setStatus] = useState('idle');
 
     async function handleSubmit(e) {
@@ -19,7 +19,7 @@ export default function HireForm({ t }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ type: 'hire', data }),
+                body: JSON.stringify({ type: 'hire', data, lang }),
             });
 
             if (res.ok) {

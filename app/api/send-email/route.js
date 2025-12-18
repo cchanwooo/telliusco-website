@@ -1,74 +1,87 @@
-import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const apiKey = process.env.RESEND_API_KEY;
-const resend = apiKey ? new Resend(apiKey) : null;
-
 export async function POST(request) {
-    if (!resend) {
-        console.error('RESEND_API_KEY is missing');
-        return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK;
+
+    if (!webhookUrl) {
+        console.error('GOOGLE_SHEET_WEBHOOK is missing from environment variables');
+        return NextResponse.json({
+            success: false,
+            error: 'Server configuration error: GOOGLE_SHEET_WEBHOOK missing'
+        }, { status: 500 });
     }
 
     try {
         const body = await request.json();
-        const { type, data } = body;
+        const { type, data, lang = 'EN' } = body;
 
-        // type: 'apply' | 'hire'
-        // data: form fields
-
-        let subject = '';
-        let htmlContent = '';
-        let toEmail = '';
+        let payload = {};
 
         if (type === 'apply') {
-            toEmail = process.env.JOBS_TO_EMAIL || 'brian@telliusco.com';
-            subject = `New Job Application: ${data.fullName} - ${data.role}`;
-            htmlContent = `
-            <h1>New Job Application</h1>
-            <p><strong>Name:</strong> ${data.fullName}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Phone:</strong> ${data.phone}</p>
-            <p><strong>City/State:</strong> ${data.location}</p>
-            <p><strong>Role:</strong> ${data.role}</p>
-            <p><strong>Availability:</strong> ${data.availability}</p>
-            <p><strong>Message:</strong> ${data.message}</p>
-        `;
+            payload = {
+                type: "apply",
+                fullName: data.fullName || "",
+                email: data.email || "",
+                phone: data.phone || "",
+                cityState: data.location || "",
+                desiredRole: data.role || "",
+                availability: data.availability || "",
+                message: data.message || "",
+                source: "Apply Page",
+                lang: lang.toUpperCase()
+            };
         } else if (type === 'hire') {
-            toEmail = process.env.SALES_TO_EMAIL || 'brian@telliusco.com';
-            subject = `New Talent Request: ${data.companyName}`;
-            htmlContent = `
-            <h1>New Talent Request</h1>
-            <p><strong>Company:</strong> ${data.companyName}</p>
-            <p><strong>Contact:</strong> ${data.contactName}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Phone:</strong> ${data.phone}</p>
-            <p><strong>Location:</strong> ${data.location}</p>
-            <p><strong>Role Needed:</strong> ${data.role}</p>
-            <p><strong>Headcount:</strong> ${data.headcount}</p>
-            <p><strong>Start Date:</strong> ${data.startDate}</p>
-            <p><strong>Shift:</strong> ${data.shift}</p>
-            <p><strong>Message:</strong> ${data.message}</p>
-        `;
+            // Forward hire form data as well to maintain functionality
+            payload = {
+                type: "hire",
+                companyName: data.companyName || "",
+                contactName: data.contactName || "",
+                email: data.email || "",
+                phone: data.phone || "",
+                cityState: data.location || "",
+                desiredRole: data.role || "",
+                headcount: data.headcount || "",
+                shift: data.shift || "",
+                startDate: data.startDate || "",
+                message: data.message || "",
+                source: "Hire Talent",
+                lang: lang.toUpperCase()
+            };
         } else {
-            return NextResponse.json({ error: 'Invalid submission type' }, { status: 400 });
+            console.warn('Unknown submission type:', type);
+            return NextResponse.json({
+                success: false,
+                error: 'Invalid submission type'
+            }, { status: 400 });
         }
 
-        const { data: emailData, error } = await resend.emails.send({
-            from: 'Telliusco Web <onboarding@resend.dev>', // Update this to a verified domain in prod setup
-            to: [toEmail],
-            subject: subject,
-            html: htmlContent,
+        console.log(`Forwarding ${type} submission to Google Sheet Webhook`);
+
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
         });
 
-        if (error) {
-            console.error('Resend Error:', error);
-            return NextResponse.json({ error: error.message }, { status: 500 });
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Apps Script Webhook Error Status:', response.status);
+            console.error('Apps Script Webhook Error Body:', errorText);
+            return NextResponse.json({
+                success: false,
+                error: `Apps Script Webhook failed with status ${response.status}`
+            }, { status: 500 });
         }
 
-        return NextResponse.json({ success: true, id: emailData.id });
+        return NextResponse.json({ success: true });
+
     } catch (error) {
-        console.error('Server Error:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        console.error('Server side error in /api/send-email:', error);
+        return NextResponse.json({
+            success: false,
+            error: error.message || 'Internal Server Error'
+        }, { status: 500 });
     }
 }
