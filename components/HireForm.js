@@ -48,13 +48,13 @@ export default function HireForm({ t, lang }) {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="companyName">{t.companyName} *</label>
-                <input className={styles.input} type="text" id="companyName" name="companyName" required />
+                <label className={styles.label} htmlFor="company">{t.company} *</label>
+                <input className={styles.input} type="text" id="company" name="company" required />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="contactName">{t.contactName} *</label>
-                <input className={styles.input} type="text" id="contactName" name="contactName" required />
+                <label className={styles.label} htmlFor="contact">{t.contact} *</label>
+                <input className={styles.input} type="text" id="contact" name="contact" required />
             </div>
 
             <div className={styles.group}>
@@ -73,8 +73,8 @@ export default function HireForm({ t, lang }) {
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="role">{t.role} *</label>
-                <input className={styles.input} type="text" id="role" name="role" required />
+                <label className={styles.label} htmlFor="roleNeeded">{t.roleNeeded} *</label>
+                <input className={styles.input} type="text" id="roleNeeded" name="roleNeeded" required />
             </div>
 
             <div className={styles.group}>
