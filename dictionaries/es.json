@@ -1,0 +1,251 @@
+{
+    "common": {
+        "loading": "Cargando...",
+        "readMore": "Leer Más",
+        "getStarted": "Comenzar",
+        "applyNow": "Aplicar Ahora",
+        "requestTalent": "Solicitar Personal"
+    },
+    "contactInfo": {
+        "phone": "404-716-9911"
+    },
+    "forms": {
+        "fullName": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "phone": "Número de Teléfono",
+        "location": "Ciudad y Estado",
+        "role": "Puesto Deseado",
+        "availability": "Disponibilidad (Fecha/Turno)",
+        "message": "Mensaje Adicional",
+        "companyName": "Nombre de la Empresa",
+        "contactName": "Persona de Contacto",
+        "headcount": "Número de Trabajadores Necesarios",
+        "shift": "Turno Requerido",
+        "startDate": "Fecha de Inicio",
+        "submit": "Enviar Solicitud",
+        "submitHire": "Enviar Petición",
+        "success": "¡Éxito! Recibimos su información y lo contactaremos pronto.",
+        "error": "Algo salió mal. Por favor intente de nuevo o llámenos.",
+        "sending": "Enviando..."
+    },
+    "nav": {
+        "findWork": "Buscar Trabajo",
+        "hireTalent": "Contratar Personal",
+        "specialties": "Especialidades",
+        "locations": "Ubicaciones",
+        "about": "Nosotros",
+        "contact": "Contacto",
+        "applyNow": "Aplicar Ahora",
+        "requestTalent": "Solicitar Personal"
+    },
+    "footer": {
+        "statesServed": "Estados Atendidos",
+        "rights": "Todos los derechos reservados.",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio",
+        "mission": "Conectando personas confiables con grandes empresas en el Sureste."
+    },
+    "home": {
+        "heroTitle": "Resuelva la falta de personal rápidamente con trabajadores confiables",
+        "heroSubtitle": "Personal confiable en Georgia, Alabama, Texas y Tennessee.",
+        "ctaApply": "Buscar Trabajo",
+        "ctaHire": "Solicitar Personal",
+        "howWeHelp": {
+            "title": "Cómo Ayudamos",
+            "seekerTitle": "Buscadores de Empleo",
+            "seekerDesc": "Encuentre trabajo estable con pago semanal. Lo conectamos con lugares de trabajo seguros y respetables.",
+            "employerTitle": "Empleadores",
+            "employerDesc": "Elimine el tiempo de inactividad. Obtenga personal calificado y verificado para sus temporadas altas y proyectos."
+        },
+        "industries": {
+            "title": "Industrias Que Servimos",
+            "mfg": "Manufactura",
+            "warehouse": "Almacén e Industrial Ligero",
+            "office": "Oficina y Administrativo",
+            "construction": "Apoyo a la Construcción"
+        },
+        "why": {
+            "title": "¿Por qué Telliusco?",
+            "speed": "Respuesta Rápida",
+            "speedDesc": "Llenamos pedidos urgentes rápidamente para que su producción nunca se detenga.",
+            "screening": "Evaluación Rigurosa",
+            "screeningDesc": "Verificamos habilidades, elegibilidad y conciencia de seguridad para cada candidato.",
+            "safety": "Seguridad Primero",
+            "safetyDesc": "Priorizamos entornos de trabajo seguros y una orientación integral."
+        },
+        "testimonials": {
+            "title": "Lo que dice la gente",
+            "q1": "Telliusco nos ayudó a dotar de personal nuestro turno de almacén en menos de 24 horas. Velocidad increíble.",
+            "a1": "Gerente de Almacén, Atlanta",
+            "q2": "Me pagaron semanalmente y encontré un trabajo permanente a través de ellos. Altamente recomendado.",
+            "a2": "Operador de Máquina, Dallas",
+            "q3": "Profesional, cumplidor y fácil de trabajar. Entienden nuestras necesidades de seguridad.",
+            "a3": "Director de RRHH, Birmingham"
+        },
+        "finalCta": {
+            "title": "¿Listo para empezar?",
+            "subtitle": "Únase a cientos de empresas y trabajadores que confían en Telliusco."
+        }
+    },
+    "locations": {
+        "title": "Nuestras Áreas de Servicio",
+        "subtitle": "Soluciones de personal local en todo el Sureste. Conocemos su mercado.",
+        "intro": "Telliusco brinda apoyo de personal dedicado en Georgia, Alabama, Texas y Tennessee. Nuestras oficinas locales entienden los mercados laborales únicos de cada ciudad que servimos.",
+        "visitPage": "Visitar Página de la Ciudad"
+    },
+    "cityPage": {
+        "heroTitle": "Agencia de Personal en {city}, {state}",
+        "heroSubtitle": "Conectando trabajadores confiables con empresas en crecimiento en {city} y áreas circundantes.",
+        "sectionA": {
+            "title": "Trabajos en {city}, {state}",
+            "desc": "¿Busca trabajo en {city}? Emparejamos personas confiables con grandes empresas locales rápidamente. Ya sea que necesite dinero a corto plazo o una carrera a largo plazo, podemos ayudar.",
+            "step1": "Aplicar en Línea",
+            "step2": "Llamada del Reclutador",
+            "step3": "Empezar a Trabajar",
+            "note": "Pago semanal · Corto y largo plazo · Disponible temporal con opción a contratación",
+            "microCopy": "Toma menos de 5 minutos."
+        },
+        "sectionB": {
+            "title": "Servicios de Personal en {city}, {state}",
+            "problem": "Resuelva el ausentismo, la rotación y las demandas de temporada alta en {city} con nuestra fuerza laboral confiable.",
+            "services": {
+                "temp": "Personal Temporal",
+                "tempDesc": "Llene vacíos instantáneamente para picos estacionales o vacaciones.",
+                "tempHire": "Temporal a Contratación",
+                "tempHireDesc": "Pruebe a un candidato en el trabajo antes de hacer una oferta de tiempo completo.",
+                "direct": "Contratación Directa",
+                "directDesc": "Permítanos buscar y evaluar a los mejores talentos para sus roles permanentes."
+            },
+            "indicators": {
+                "fast": "Tasa de Llenado Rápida",
+                "screened": "E-Verify y Verificación de Antecedentes",
+                "safety": "Orientación de Seguridad"
+            }
+        },
+        "sectionC": {
+            "title": "¿Listo para contratar en {city}?"
+        },
+        "sectionD": {
+            "title": "Visite nuestra oficina en {city}",
+            "pending": "(Detalles de la oficina próximamente)",
+            "call": "Llame para citas:"
+        },
+        "faq": {
+            "q1": "¿Qué tipos de trabajos ofrecen en {city}?",
+            "a1": "Nos especializamos en roles de Manufactura, Almacén, Industrial Ligero, Oficina y Apoyo a la Construcción en el área de {city}.",
+            "q2": "¿Qué tan rápido pueden llenar un pedido?",
+            "a2": "A menudo llenamos pedidos urgentes dentro de 24-48 horas. Nuestro grupo de candidatos pre-seleccionados está listo para trabajar.",
+            "q3": "¿Ofrecen opción de temporal a contratación?",
+            "a3": "¡Sí! Temporal a contratación es una excelente manera de reducir el riesgo de contratación. Puede evaluar el desempeño de un trabajador antes de contratarlo directamente.",
+            "q4": "¿Cuáles son sus pasos de selección?",
+            "a4": "Realizamos verificación de identidad, verificación de elegibilidad laboral E-Verify, verificación de antecedentes, detección de drogas (a pedido) y evaluaciones de habilidades.",
+            "q5": "¿Cómo se paga a los candidatos?",
+            "a5": "Los empleados reciben pago semanal mediante depósito directo o tarjeta de nómina.",
+            "q6": "¿Qué áreas cercanas sirven?",
+            "a6": "Servimos a {city} y las comunidades circundantes en {state}. Contáctenos para confirmar si cubrimos su código postal específico."
+        }
+    },
+    "apply": {
+        "title": "Solicitud de Empleo",
+        "subtitle": "Comience su carrera con Telliusco hoy.",
+        "intro": "Tenemos nuevos trabajos abriéndose todos los días. Llene una solicitud para ser considerado para múltiples oportunidades.",
+        "checklistTitle": "Lo que necesitará:",
+        "checklist": [
+            "Identificación válida (ID)",
+            "Documentos de autorización de trabajo",
+            "Currículum (opcional pero recomendado)",
+            "Información bancaria para depósito directo (opcional)"
+        ],
+        "timelineTitle": "¿Qué sigue?",
+        "timeline": [
+            "1. Envíe esta solicitud.",
+            "2. Nuestro reclutador revisa sus habilidades.",
+            "3. Lo llamamos para una entrevista rápida.",
+            "4. ¡Lo emparejamos con un trabajo!"
+        ],
+        "trust": "Telliusco es un empleador que ofrece igualdad de oportunidades. Priorizamos su seguridad y trato justo.",
+        "formPlaceholder": "[Marcador de posición del formulario de solicitud]"
+    },
+    "hire": {
+        "title": "Contratar Talento",
+        "subtitle": "Soluciones de fuerza laboral confiables para su negocio",
+        "intro": "Deje de preocuparse por las inasistencias y la rotación. Proporcionamos un flujo constante de trabajadores examinados y conscientes de la seguridad.",
+        "rolesTitle": "Roles que Cubrimos",
+        "processTitle": "Cómo funciona",
+        "processSteps": [
+            "1. Díganos sus necesidades (Rol, Turno, Cantidad)",
+            "2. Seleccionamos y evaluamos candidatos",
+            "3. Los trabajadores llegan listos para trabajar",
+            "4. Manejamos la nómina y el cumplimiento"
+        ],
+        "proofTitle": "¿Por qué asociarse con Telliusco?",
+        "proofPoints": [
+            "Tasa de llenado del 95% en pedidos urgentes",
+            "Línea de soporte 24/7 para clientes",
+            "Cumplimiento total (E-Verify, WC, Seguros)"
+        ],
+        "faqTitle": "Preguntas Frecuentes de Empleadores",
+        "faq": [
+            {
+                "q": "¿Cuál es el pedido mínimo?",
+                "a": "No tenemos un mínimo estricto, pero se aplican mejores precios a pedidos por volumen."
+            },
+            {
+                "q": "¿Qué tan rápido puedo conseguir trabajadores?",
+                "a": "A menudo el mismo día o al día siguiente para roles de labor general."
+            },
+            {
+                "q": "¿Tienen compensación laboral?",
+                "a": "Sí, cubrimos todos los impuestos de nómina, desempleo y seguro de compensación laboral."
+            }
+        ]
+    },
+    "specialties": {
+        "title": "Nuestras Especialidades",
+        "subtitle": "Experiencia enfocada en industrias clave.",
+        "mfg": {
+            "title": "Personal de Manufactura",
+            "desc": "Ensambladores, Operadores de Máquinas, Inspectores de Calidad, Líderes de Producción.",
+            "value": "Entendemos las cuotas de producción y las regulaciones de seguridad."
+        },
+        "warehouse": {
+            "title": "Almacén y Logística",
+            "desc": "Empaque, Operadores de Montacargas, Envío/Recepción, Control de Inventario.",
+            "value": "Personal confiable para mantener su cadena de suministro en movimiento."
+        },
+        "office": {
+            "title": "Oficina y Administrativo",
+            "desc": "Recepcionistas, Entrada de Datos, Servicio al Cliente, Asistentes de Oficina.",
+            "value": "Candidatos profesionales con habilidades informáticas y de comunicación."
+        },
+        "construction": {
+            "title": "Apoyo a la Construcción",
+            "desc": "Labor general, equipos de limpieza, apoyo en el sitio.",
+            "value": "Equipos trabajadores para entornos exigentes."
+        }
+    },
+    "about": {
+        "title": "Sobre Telliusco",
+        "mission": "Nuestra Misión",
+        "missionText": "Cerrar la brecha entre personas trabajadoras y negocios esenciales a través de la velocidad, confiabilidad y comunicación honesta.",
+        "valuesTitle": "Nuestros Valores",
+        "values": [
+            "Seguridad Primero: Ningún trabajo vale una lesión.",
+            "Integridad: Hacemos lo que decimos.",
+            "Velocidad: El tiempo es dinero para nuestros clientes y trabajadores."
+        ],
+        "eeo": "Telliusco Staffing se enorgullece de ser un empleador que ofrece igualdad de oportunidades."
+    },
+    "contact": {
+        "title": "Contáctenos",
+        "subtitle": "Estamos aquí para ayudar.",
+        "instructions": "Para consultas de trabajo, visite la página de Aplicar. Para consultas comerciales, llene el formulario a continuación o llame a nuestra línea principal.",
+        "urgent": "Para necesidades urgentes de personal (menos de 24 horas), llame a nuestra línea directa de inmediato.",
+        "infoNeeded": "Al enviarnos un mensaje, incluya: Ciudad, Turno y Fecha de Inicio.",
+        "formPlaceholder": "[Marcador de posición del formulario de contacto]"
+    },
+    "seo": {
+        "defaultTitle": "Telliusco Staffing | Trabajadores Confiables en GA, AL, TX, TN",
+        "defaultDesc": "Agencia de personal líder sirviendo a Georgia, Alabama, Texas y Tennessee. Soluciones rápidas y confiables para personal de manufactura, almacén y oficina."
+    }
+}

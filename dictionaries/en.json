@@ -1,0 +1,251 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "getStarted": "Get Started",
+    "applyNow": "Apply Now",
+    "requestTalent": "Request Talent"
+  },
+  "contactInfo": {
+    "phone": "404-716-9911"
+  },
+  "forms": {
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "location": "City & State",
+    "role": "Desired Role",
+    "availability": "Availability (Start Date/Shift)",
+    "message": "Additional Message",
+    "companyName": "Company Name",
+    "contactName": "Contact Person",
+    "headcount": "Number of Workers Needed",
+    "shift": "Shift Needed",
+    "startDate": "Start Date",
+    "submit": "Submit Application",
+    "submitHire": "Send Request",
+    "success": "Success! We received your information and will contact you shortly.",
+    "error": "Something went wrong. Please try again or call us directly.",
+    "sending": "Sending..."
+  },
+  "nav": {
+    "findWork": "Find Work",
+    "hireTalent": "Hire Talent",
+    "specialties": "Specialties",
+    "locations": "Locations",
+    "about": "About",
+    "contact": "Contact",
+    "applyNow": "Apply Now",
+    "requestTalent": "Request Talent"
+  },
+  "footer": {
+    "statesServed": "States Served",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "mission": "Connecting reliable people with great companies across the Southeast."
+  },
+  "home": {
+    "heroTitle": "Solve Workforce Gaps Quickly with Screened, Reliable Workers",
+    "heroSubtitle": "Trustworthy staffing in Georgia, Alabama, Texas, and Tennessee.",
+    "ctaApply": "Find a Job",
+    "ctaHire": "Request Talent",
+    "howWeHelp": {
+      "title": "How We Help",
+      "seekerTitle": "Job Seekers",
+      "seekerDesc": "Find steady work with weekly pay. We match you with safe, reputable workplaces.",
+      "employerTitle": "Employers",
+      "employerDesc": "Eliminate downtime. Get qualified, verified staff for your peak seasons and projects."
+    },
+    "industries": {
+      "title": "Industries We Serve",
+      "mfg": "Manufacturing",
+      "warehouse": "Warehouse & Light Industrial",
+      "office": "Clerical & Office",
+      "construction": "Construction Support"
+    },
+    "why": {
+      "title": "Why Telliusco?",
+      "speed": "Fast Response",
+      "speedDesc": "We fill urgent orders quickly so your production never stops.",
+      "screening": "Rigorous Screening",
+      "screeningDesc": "We verify skills, eligibility, and safety awareness for every candidate.",
+      "safety": "Safety First",
+      "safetyDesc": "We prioritize safe work environments and comprehensive orientation."
+    },
+    "testimonials": {
+      "title": "What People Say",
+      "q1": "Telliusco helped us staff our warehouse shift in under 24 hours. Incredible speed.",
+      "a1": "Warehouse Manager, Atlanta",
+      "q2": "I got paid weekly and found a permanent job through them. Highly recommend.",
+      "a2": "Machine Operator, Dallas",
+      "q3": "Professional, compliant, and easy to work with. They understand our safety needs.",
+      "a3": "HR Director, Birmingham"
+    },
+    "finalCta": {
+      "title": "Ready to get started?",
+      "subtitle": "Join hundreds of businesses and workers who trust Telliusco."
+    }
+  },
+  "locations": {
+    "title": "Our Service Areas",
+    "subtitle": "Local staffing solutions across the Southeast. We know your market.",
+    "intro": "Telliusco provides dedicated staffing support in Georgia, Alabama, Texas, and Tennessee. Our local offices understand the unique labor markets of each city we serve.",
+    "visitPage": "Visit City Page"
+  },
+  "cityPage": {
+    "heroTitle": "Staffing Agency in {city}, {state}",
+    "heroSubtitle": "Connecting reliable workers with growing businesses in {city} and surrounding areas.",
+    "sectionA": {
+      "title": "Jobs Hiring in {city}, {state}",
+      "desc": "Looking for work in {city}? We match reliable people with great local companies fast. Whether you need short-term cash or a long-term career, we can help.",
+      "step1": "Apply Online",
+      "step2": "Recruiter Call",
+      "step3": "Start Working",
+      "note": "Weekly pay · Short-term & Long-term · Temp-to-Hire available",
+      "microCopy": "Takes less than 5 minutes."
+    },
+    "sectionB": {
+      "title": "Staffing Services in {city}, {state}",
+      "problem": "Struggling with absenteeism, turnover, or peak season demands in {city}? We provide a reliable workforce pipeline.",
+      "services": {
+        "temp": "Temporary Staffing",
+        "tempDesc": "Fill gaps instantly for seasonal spikes or vacations.",
+        "tempHire": "Temp-to-Hire",
+        "tempHireDesc": "Try a candidate on the job before making a full-time offer.",
+        "direct": "Direct Hire",
+        "directDesc": "Let us source and screen top talent for your permanent roles."
+      },
+      "indicators": {
+        "fast": "Fast Fill Rate",
+        "screened": "E-Verify & Background Checks",
+        "safety": "Safety Orientation"
+      }
+    },
+    "sectionC": {
+      "title": "Ready to hire in {city}?"
+    },
+    "sectionD": {
+      "title": "Visit our {city} Office",
+      "pending": "(Office details coming soon)",
+      "call": "Call for appointments:"
+    },
+    "faq": {
+      "q1": "What types of jobs do you staff in {city}?",
+      "a1": "We specialize in Manufacturing, Warehouse, Light Industrial, Clerical/Office, and Construction Support roles in the {city} area.",
+      "q2": "How fast can you fill an order?",
+      "a2": "We typically fill urgent orders within 24-48 hours. Our pool of pre-screened candidates is ready to work.",
+      "q3": "Do you offer temp-to-hire?",
+      "a3": "Yes! Temp-to-hire is a great way to reduce hiring risk. You can evaluate a worker's performance on the job before hiring them directly.",
+      "q4": "What are your screening steps?",
+      "a4": "We conduct identity verification, E-Verify work eligibility checks, background checks, drug screening (on request), and skills assessments.",
+      "q5": "How do candidates get paid?",
+      "a5": "Employees are paid weekly via direct deposit or pay card, ensuring they stay motivated and reliable.",
+      "q6": "Which nearby areas do you serve?",
+      "a6": "We serve {city} and the surrounding communities in {state}. Contact us to confirm if we cover your specific zip code."
+    }
+  },
+  "apply": {
+    "title": "Job Application",
+    "subtitle": "Start your career with Telliusco today.",
+    "intro": "We have new jobs opening every day. Fill out one application to be considered for multiple opportunities.",
+    "checklistTitle": "What you'll need:",
+    "checklist": [
+      "Valid identification (ID)",
+      "Work authorization documents",
+      "Resume (optional but recommended)",
+      "Bank info for Direct Deposit (optional)"
+    ],
+    "timelineTitle": "What happens next?",
+    "timeline": [
+      "1. Submit this application.",
+      "2. Our recruiter reviews your skills.",
+      "3. We call you for a quick interview.",
+      "4. You get matched with a job!"
+    ],
+    "trust": "Telliusco is an Equal Opportunity Employer. We prioritize your safety and fair treatment.",
+    "formPlaceholder": "[Application Form Integration Placeholder - Contact Office to Apply]"
+  },
+  "hire": {
+    "title": "Hire Talent",
+    "subtitle": "Reliable Workforce Solutions for Your Business",
+    "intro": "Stop worrying about no-shows and turnover. We provide a steady stream of vetted, safety-conscious workers.",
+    "rolesTitle": "Roles We Fill",
+    "processTitle": "How it works",
+    "processSteps": [
+      "1. Tell us your needs (Role, Shift, Count)",
+      "2. We screen & select candidates",
+      "3. Workers arrive ready to work",
+      "4. We handle payroll & compliance"
+    ],
+    "proofTitle": "Why Partner with Telliusco?",
+    "proofPoints": [
+      "95% Fill Rate on urgent orders",
+      "24/7 Support line for clients",
+      "Full Compliance (E-Verify, WC, Insurance)"
+    ],
+    "faqTitle": "Employer FAQ",
+    "faq": [
+      {
+        "q": "What is the minimum order?",
+        "a": "We have no strict minimum, but better pricing applies to volume orders."
+      },
+      {
+        "q": "How fast can I get workers?",
+        "a": "Often the same day or next day for general labor roles."
+      },
+      {
+        "q": "Do you carry Workers' Comp?",
+        "a": "Yes, we cover all payroll taxes, unemployment, and workers' compensation insurance."
+      }
+    ]
+  },
+  "specialties": {
+    "title": "Our Specialties",
+    "subtitle": "Focused expertise in key industries.",
+    "mfg": {
+      "title": "Manufacturing Staffing",
+      "desc": "Assemblers, Machine Operators, QA Inspectors, Production Leads.",
+      "value": "We understand production quotas and safety regulations."
+    },
+    "warehouse": {
+      "title": "Warehouse & Logistics",
+      "desc": "Pick/Pack, Forklift Operators, Shipping/Receiving, Inventory Control.",
+      "value": "Reliable staff to keep your supply chain moving."
+    },
+    "office": {
+      "title": "Clerical & Admin",
+      "desc": "Receptionists, Data Entry, Customer Service, Office Assistants.",
+      "value": "Professional candidates with computer and communication skills."
+    },
+    "construction": {
+      "title": "Construction Support",
+      "desc": "General Labor, cleanup crews, site support.",
+      "value": "Hardworking teams for demanding environments."
+    }
+  },
+  "about": {
+    "title": "About Telliusco",
+    "mission": "Our Mission",
+    "missionText": "To bridge the gap between hardworking people and essential businesses through speed, reliability, and honest communication.",
+    "valuesTitle": "Our Values",
+    "values": [
+      "Safety First: No job is worth an injury.",
+      "Integrity: We do what we say.",
+      "Speed: Time is money for our clients and workers."
+    ],
+    "eeo": "Telliusco Staffing is proud to be an Equal Opportunity Employer."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to help.",
+    "instructions": "For job inquiries, please visit the Apply page. For business inquiries, fill out the form below or call our main line.",
+    "urgent": "For urgent staffing needs (less than 24 hours), please call our hotline immediately.",
+    "infoNeeded": "When messaging us, please include: City, Shift, and Start Date.",
+    "formPlaceholder": "[Contact Form Placeholder]"
+  },
+  "seo": {
+    "defaultTitle": "Telliusco Staffing | Reliable Workers in GA, AL, TX, TN",
+    "defaultDesc": "Leading staffing agency serving Georgia, Alabama, Texas, and Tennessee. Quick reliable solutions for manufacturing, warehouse, and office staffing."
+  }
+}

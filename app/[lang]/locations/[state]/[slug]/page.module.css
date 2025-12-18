@@ -1,0 +1,213 @@
+.hero {
+    background: linear-gradient(135deg, #001233 0%, #00303C 100%);
+    padding: 6rem 0;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 184, 28, 0.1), transparent 40%);
+    pointer-events: none;
+}
+
+.heroTitle {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ctaGroup {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.sectionA,
+.sectionB,
+.sectionC,
+.sectionE {
+    padding: 5rem 0;
+}
+
+.sectionA {
+    background-color: var(--white);
+}
+
+.splitContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.jobText h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.processSteps {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+.stepNum {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+.categories {
+    background: var(--light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.categories ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.categories li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.categories li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.sectionB {
+    background-color: #F8F9FA;
+    text-align: center;
+}
+
+.sectionB h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.problemText {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+}
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid var(--primary-color);
+}
+
+.trustIndicators {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.check {
+    color: green;
+}
+
+.sectionC {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.sectionC h2 {
+    margin-bottom: 2rem;
+}
+
+.sectionD {
+    padding: 3rem 0;
+}
+
+.officeBox {
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.sectionE {
+    background: var(--light-gray);
+}
+
+.faqGrid details {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+.faqGrid summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.faqGrid p {
+    margin-top: 1rem;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+
+    .splitContent,
+    .cardGrid {
+        grid-template-columns: 1fr;
+    }
+}

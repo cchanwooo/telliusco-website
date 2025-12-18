@@ -1,0 +1,233 @@
+.hero {
+    background: linear-gradient(135deg, #001233 0%, #00303C 100%);
+    color: var(--white);
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 20%, rgba(255, 184, 28, 0.15), transparent 40%);
+    pointer-events: none;
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+.ctaGroup {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.statesSection {
+    padding: 5rem 0;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.statesSection h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+}
+
+.stateGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Existing Styles preserved or overridden */
+.stateCard {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    border: 1px solid #eee;
+}
+
+.stateCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.stateCard h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* NEW SECTIONS */
+
+.sectionTitle {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.sectionSubtitle {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* How We Help */
+.howWeHelp {
+    padding: 5rem 0;
+    background: #fff;
+}
+
+.helpGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.helpCard {
+    background: var(--light-gray);
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.helpCard h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.helpCard p {
+    margin-bottom: 1.5rem;
+}
+
+.textLink {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Industries */
+.industries {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.industryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.indCard {
+    background: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Why Section */
+.whySection {
+    padding: 5rem 0;
+}
+
+.whyGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.whyItem {
+    text-align: center;
+    padding: 1rem;
+}
+
+.whyItem h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 5rem 0;
+    background: var(--primary-color);
+    color: white;
+}
+
+.testimonials .sectionTitle {
+    color: white;
+}
+
+.testGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.testCard {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    font-style: italic;
+}
+
+.testCard span {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Final CTA */
+.finalCta {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.finalCta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+
+    .helpGrid,
+    .whyGrid,
+    .testGrid {
+        grid-template-columns: 1fr;
+    }
+}
