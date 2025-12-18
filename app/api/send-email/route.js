@@ -54,10 +54,12 @@ export async function POST(request) {
 
         console.log(`Forwarding ${type} to Google Sheet:`, payload);
 
+        const notificationEmails = ["brian@telliusco.com", "grace@telliusco.com", "simon@telliusco.com"];
+
         const response = await fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            body: JSON.stringify({ ...payload, notificationEmails: notificationEmails.join(',') }),
         });
 
         if (!response.ok) {
