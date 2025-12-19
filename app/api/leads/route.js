@@ -5,32 +5,28 @@ export async function POST(request) {
 
     try {
         const body = await request.json();
-        const { type, lang, source, data } = body;
 
-        // 💡 핵심: 앱스 스크립트가 인식하기 쉽게 모든 필드를 최상위로 끌어올림 (Flattening)
+        // 데이터 평면화 (Flattening)
         const finalPayload = {
-            type,
-            lang,
-            source,
-            ...data, // fullName, email, phone, resume 등이 최상위로 감
+            type: body.type,
+            lang: body.lang,
+            source: body.source,
+            ...body.data // 이 부분이 fullName, email 등을 최상위로 올립니다.
         };
 
-        console.log(`Forwarding to Apps Script. Resume present: ${!!finalPayload.resume}`);
+        console.log('Forwarding lead (flat):', finalPayload.fullName);
 
         const response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(finalPayload), // 순수 JSON 문자열로 전송
+            body: JSON.stringify(finalPayload),
         });
 
-        const resultText = await response.text();
-        return new NextResponse(resultText, {
-            status: response.status,
-            headers: { 'Content-Type': 'application/json' }
-        });
+        const text = await response.text();
+        return new NextResponse(text, { status: 200 });
 
     } catch (error) {
-        console.error('API Route Error:', error);
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+        console.error('Route error:', error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
