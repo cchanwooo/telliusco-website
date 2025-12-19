@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyyd0znlah7T0ccQk35aapqfZB1CXeNo0T-NXqjVTEU2h3C6YznQjo8B-0Z6hx_aziF/exec';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjxytcicbSSz8u5l4d0wq9tKwKaLibNoW5HOxKirVadNpkMPTCoLLih042uYNOTbjT/exec';
     try {
         const body = await request.json();
 
