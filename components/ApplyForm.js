@@ -54,14 +54,18 @@ export default function ApplyForm({ t, lang }) {
                 desiredRole: formData.get('role') || '',
                 availability: formData.get('availability') || '',
                 message: formData.get('message') || '',
-                resume: resumeData // 이 부분이 구글로 전달됩니다.
+                resume: resumeData
             };
+
+            console.log('📡 [ApplyForm] Sending to /api/send-email...', payload);
 
             const res = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
             });
+
+            console.log('🏁 [ApplyForm] Status:', res.status);
 
             if (res.ok) {
                 setStatus('success');
