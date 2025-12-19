@@ -11,10 +11,8 @@ export async function POST(request) {
             type: body.type,
             lang: body.lang,
             source: body.source,
-            ...body.data // 이 부분이 fullName, email 등을 최상위로 올립니다.
+            ...body.data
         };
-
-        console.log('Forwarding lead (flat):', finalPayload.fullName);
 
         const response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
@@ -22,11 +20,18 @@ export async function POST(request) {
             body: JSON.stringify(finalPayload),
         });
 
-        const text = await response.text();
-        return new NextResponse(text, { status: 200 });
+        const result = await response.json();
+
+        // 앱스 스크립트 내부에서 실패한 경우 처리
+        if (result.success === false) {
+            console.error('Apps Script Internal Error:', result.error);
+            return NextResponse.json(result, { status: 500 });
+        }
+
+        return NextResponse.json(result, { status: 200 });
 
     } catch (error) {
         console.error('Route error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }

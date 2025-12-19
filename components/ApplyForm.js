@@ -27,12 +27,9 @@ export default function ApplyForm({ t, lang }) {
         const formData = new FormData(form);
         const resumeFile = form.resume?.files?.[0];
 
-        // 1. 파일 검사 (에러 시 경고창 띄우고 중단)
-        if (resumeFile && resumeFile.size > 0) {
-            if (resumeFile.size > 2 * 1024 * 1024) {
-                alert('File is too large! (Limit 2MB)');
-                return;
-            }
+        if (resumeFile && resumeFile.size > 2 * 1024 * 1024) {
+            alert('File is too large! (Limit 2MB)');
+            return;
         }
 
         setStatus('submitting');
@@ -45,7 +42,6 @@ export default function ApplyForm({ t, lang }) {
                 console.log('✅ Resume encoded:', resumeData.filename);
             }
 
-            // 앱스 스크립트가 바로 읽을 수 있는 구조로 정리
             const payload = {
                 type: 'apply',
                 lang: lang || 'EN',
@@ -62,7 +58,6 @@ export default function ApplyForm({ t, lang }) {
                 }
             };
 
-            console.log('📡 Sending to /api/leads...');
             const res = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -70,18 +65,87 @@ export default function ApplyForm({ t, lang }) {
             });
 
             if (res.ok) {
-                console.log('✅ Server responded 200 OK');
+                const responseData = await res.json();
+                if (responseData.success === false) throw new Error(responseData.error);
+
                 setStatus('success');
                 form.reset();
             } else {
-                throw new Error(await res.text());
+                const errText = await res.text();
+                throw new Error(errText);
             }
         } catch (err) {
             console.error('❌ Final Error:', err);
-            alert('Something went wrong. Please check console.');
+            alert('Error: ' + err.message);
             setStatus('error');
         }
     }
 
-    // ... (본문 렌더링 코드는 기존과 동일)
+    if (status === 'success') {
+        return (
+            <div className={styles.success}>
+                <h3>{t.success}</h3>
+                <button onClick={() => setStatus('idle')} className={styles.linkButton}>
+                    Submit another
+                </button>
+            </div>
+        );
+    }
+
+    return (
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="fullName">{t.fullName} *</label>
+                <input className={styles.input} type="text" id="fullName" name="fullName" required />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="email">{t.email} *</label>
+                <input className={styles.input} type="email" id="email" name="email" required />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="phone">{t.phone} *</label>
+                <input className={styles.input} type="tel" id="phone" name="phone" required />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="location">{t.location} *</label>
+                <input className={styles.input} type="text" id="location" name="location" required />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="role">{t.role} *</label>
+                <select className={styles.select} id="role" name="role" required>
+                    <option value="">-- Select --</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Warehouse">Warehouse</option>
+                    <option value="Office">Office/Clerical</option>
+                    <option value="Construction">Construction Support</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="availability">{t.availability}</label>
+                <input className={styles.input} type="text" id="availability" name="availability" />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
+                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="message">{t.message}</label>
+                <textarea className={styles.textarea} id="message" name="message"></textarea>
+            </div>
+
+            {status === 'error' && <div className={styles.error}>{t.error}</div>}
+
+            <button className={styles.button} type="submit" disabled={status === 'submitting'}>
+                {status === 'submitting' ? t.sending : t.submit}
+            </button>
+        </form>
+    );
 }
