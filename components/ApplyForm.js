@@ -6,45 +6,68 @@ import styles from './Form.module.css';
 export default function ApplyForm({ t, lang }) {
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
+    // Helper function to convert file to base64
+    const fileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve({
+                base64: reader.result.split(',')[1],
+                filename: file.name,
+                mimeType: file.type
+            });
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
     async function handleSubmit(e) {
         e.preventDefault();
-        setStatus('submitting');
 
         const formData = new FormData(e.target);
-        const data = Object.fromEntries(formData.entries());
-
-        // Handle File Upload
         const resumeFile = formData.get('resume');
-        let resumeData = null;
 
+        // 1. Validation: File Type & Size
         if (resumeFile && resumeFile.size > 0) {
-            try {
-                resumeData = await new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve({
-                        base64: reader.result.split(',')[1],
-                        filename: resumeFile.name,
-                        mimeType: resumeFile.type
-                    });
-                    reader.onerror = reject;
-                    reader.readAsDataURL(resumeFile);
-                });
-            } catch (err) {
-                console.error("File reading error:", err);
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            if (!allowedTypes.includes(resumeFile.type)) {
+                alert('Only PDF, DOC, and DOCX files are allowed.');
+                return;
+            }
+            if (resumeFile.size > 5 * 1024 * 1024) { // 5MB
+                alert('File size must be less than 5MB.');
+                return;
             }
         }
 
+        setStatus('submitting');
+
         try {
+            // Prepare text data
+            const textData = {};
+            formData.forEach((value, key) => {
+                if (key !== 'resume') textData[key] = value;
+            });
+
+            // Convert resume if exists
+            let resumeData = null;
+            if (resumeFile && resumeFile.size > 0) {
+                resumeData = await fileToBase64(resumeFile);
+            }
+
+            // Final JSON Payload (Apps Script only parses JSON)
+            const payload = {
+                type: 'apply',
+                lang: lang || 'EN',
+                data: {
+                    ...textData,
+                    resume: resumeData
+                }
+            };
+
             const res = await fetch('/api/send-email', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    type: 'apply',
-                    data: { ...data, resume: resumeData },
-                    lang
-                }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
             });
 
             if (res.ok) {
@@ -54,7 +77,7 @@ export default function ApplyForm({ t, lang }) {
                 setStatus('error');
             }
         } catch (err) {
-            console.error(err);
+            console.error('Submission error:', err);
             setStatus('error');
         }
     }
