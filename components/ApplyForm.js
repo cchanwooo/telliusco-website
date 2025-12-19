@@ -6,15 +6,42 @@ import styles from './Form.module.css';
 export default function ApplyForm({ t, lang }) {
     const [status, setStatus] = useState('idle');
 
+    // 파일을 베이스64 문자열로 변환하는 함수
+    const fileToBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base64 = reader.result.split(',')[1];
+                resolve({
+                    base64,
+                    filename: file.name,
+                    mimeType: file.type || 'application/octet-stream',
+                });
+            };
+            reader.onerror = (error) => reject(error);
+        });
+
     async function handleSubmit(e) {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(form);
+        const resumeFile = form.resume?.files?.[0];
+
+        // 파일 용량 제한 (2MB)
+        if (resumeFile && resumeFile.size > 2 * 1024 * 1024) {
+            alert('File is too large! (Limit 2MB)');
+            return;
+        }
 
         setStatus('submitting');
 
         try {
-            // ✅ Temporarily disabled resume processing to avoid Google Drive errors
+            let resumeData = null;
+            if (resumeFile && resumeFile.size > 0) {
+                resumeData = await fileToBase64(resumeFile);
+            }
+
             const payload = {
                 type: 'apply',
                 lang: lang || 'EN',
@@ -27,7 +54,7 @@ export default function ApplyForm({ t, lang }) {
                 desiredRole: formData.get('role') || '',
                 availability: formData.get('availability') || '',
                 message: formData.get('message') || '',
-                resume: null // Disabled
+                resume: resumeData // 이 부분이 구글로 전달됩니다.
             };
 
             const res = await fetch('/api/send-email', {
@@ -40,11 +67,13 @@ export default function ApplyForm({ t, lang }) {
                 setStatus('success');
                 form.reset();
             } else {
-                setStatus('error');
+                const errData = await res.json();
+                throw new Error(errData.error || 'Server error');
             }
         } catch (err) {
             console.error('Final Error:', err);
             setStatus('error');
+            alert('Error: ' + err.message);
         }
     }
 
@@ -98,7 +127,12 @@ export default function ApplyForm({ t, lang }) {
                 <input className={styles.input} type="text" id="availability" name="availability" />
             </div>
 
-            {/* Resume input hidden temporarily to prioritize basic data flow */}
+            {/* Resume input 다시 추가 */}
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
+                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+            </div>
+
             <div className={styles.group}>
                 <label className={styles.label} htmlFor="message">{t.message}</label>
                 <textarea className={styles.textarea} id="message" name="message"></textarea>
