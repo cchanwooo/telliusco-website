@@ -25,11 +25,15 @@ export default function ApplyForm({ t, lang }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const resumeFile = formData.get('resume'); // File object
+        // ✅ e.target 대신 currentTarget(=form)을 쓰는 게 안전
+        const formEl = e.currentTarget;
+        const formData = new FormData(formEl);
+
+        // ✅ FormData.get('resume') 대신 input.files[0]로 직접 가져오기 (가장 확실)
+        const resumeFile = formEl?.resume?.files?.[0] || null;
 
         // Validate resume (optional)
-        if (resumeFile && resumeFile instanceof File && resumeFile.size > 0) {
+        if (resumeFile && resumeFile.size > 0) {
             const allowedTypes = [
                 'application/pdf',
                 'application/msword',
@@ -50,13 +54,10 @@ export default function ApplyForm({ t, lang }) {
         try {
             let resumeData = null;
 
-            if (resumeFile && resumeFile instanceof File && resumeFile.size > 0) {
+            if (resumeFile && resumeFile.size > 0) {
                 resumeData = await fileToBase64(resumeFile);
-                console.log(
-                    `✅ Resume detected: ${resumeData.filename}, base64 length: ${resumeData.base64.length}`
-                );
+                console.log(`✅ Resume detected: ${resumeData.filename}, base64 length: ${resumeData.base64.length}`);
 
-                // Safety: base64 empty면 업로드 실패로 처리
                 if (!resumeData.base64) {
                     throw new Error('Resume base64 conversion failed (empty base64).');
                 }
@@ -65,8 +66,8 @@ export default function ApplyForm({ t, lang }) {
             }
 
             const payload = {
-                type: 'apply',                 // ✅ 오타 방지 (applyy 금지)
-                lang: (lang || 'EN'),
+                type: 'apply', // ✅ 오타 방지
+                lang: lang || 'EN',
                 source: 'Apply Page',
                 data: {
                     fullName: formData.get('fullName') || '',
@@ -76,7 +77,7 @@ export default function ApplyForm({ t, lang }) {
                     desiredRole: formData.get('role') || '',
                     availability: formData.get('availability') || '',
                     message: formData.get('message') || '',
-                    resume: resumeData,          // ✅ 여기로 들어가야 함 (null 가능)
+                    resume: resumeData, // ✅ base64/filename/mimeType 포함
                 },
             };
 
@@ -93,7 +94,7 @@ export default function ApplyForm({ t, lang }) {
 
             if (res.ok) {
                 setStatus('success');
-                e.target.reset();
+                formEl.reset(); // ✅ e.target.reset() 대신
             } else {
                 setStatus('error');
             }
@@ -126,27 +127,37 @@ export default function ApplyForm({ t, lang }) {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="fullName">{t.fullName} *</label>
+                <label className={styles.label} htmlFor="fullName">
+                    {t.fullName} *
+                </label>
                 <input className={styles.input} type="text" id="fullName" name="fullName" required />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="email">{t.email} *</label>
+                <label className={styles.label} htmlFor="email">
+                    {t.email} *
+                </label>
                 <input className={styles.input} type="email" id="email" name="email" required />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="phone">{t.phone} *</label>
+                <label className={styles.label} htmlFor="phone">
+                    {t.phone} *
+                </label>
                 <input className={styles.input} type="tel" id="phone" name="phone" required />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="location">{t.location} *</label>
+                <label className={styles.label} htmlFor="location">
+                    {t.location} *
+                </label>
                 <input className={styles.input} type="text" id="location" name="location" required />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="role">{t.role} *</label>
+                <label className={styles.label} htmlFor="role">
+                    {t.role} *
+                </label>
                 <select className={styles.select} id="role" name="role" required>
                     <option value="">-- Select --</option>
                     <option value="Manufacturing">Manufacturing</option>
@@ -158,23 +169,23 @@ export default function ApplyForm({ t, lang }) {
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="availability">{t.availability}</label>
+                <label className={styles.label} htmlFor="availability">
+                    {t.availability}
+                </label>
                 <input className={styles.input} type="text" id="availability" name="availability" />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
-                <input
-                    className={styles.input}
-                    type="file"
-                    id="resume"
-                    name="resume"
-                    accept=".pdf,.doc,.docx"
-                />
+                <label className={styles.label} htmlFor="resume">
+                    {t.uploadResume || 'Upload Resume (optional)'}
+                </label>
+                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
             </div>
 
             <div className={styles.group}>
-                <label className={styles.label} htmlFor="message">{t.message}</label>
+                <label className={styles.label} htmlFor="message">
+                    {t.message}
+                </label>
                 <textarea className={styles.textarea} id="message" name="message"></textarea>
             </div>
 
