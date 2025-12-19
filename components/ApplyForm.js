@@ -27,56 +27,51 @@ export default function ApplyForm({ t, lang }) {
         const formData = new FormData(form);
         const resumeFile = form.resume?.files?.[0];
 
+        // 1. Validation
         if (resumeFile && resumeFile.size > 2 * 1024 * 1024) {
             alert('File is too large! (Limit 2MB)');
             return;
         }
 
         setStatus('submitting');
-        console.log('--- Submission Started ---');
 
         try {
             let resumeData = null;
             if (resumeFile && resumeFile.size > 0) {
                 resumeData = await fileToBase64(resumeFile);
-                console.log('✅ Resume encoded:', resumeData.filename);
             }
 
+            // ✅ Flatten payload (LIKE HireForm.js)
             const payload = {
                 type: 'apply',
                 lang: lang || 'EN',
                 source: 'Apply Page',
-                data: {
-                    fullName: formData.get('fullName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    cityState: formData.get('location'),
-                    desiredRole: formData.get('role'),
-                    availability: formData.get('availability'),
-                    message: formData.get('message'),
-                    resume: resumeData
-                }
+
+                fullName: formData.get('fullName') || '',
+                email: formData.get('email') || '',
+                phone: formData.get('phone') || '',
+                cityState: formData.get('location') || '',
+                desiredRole: formData.get('role') || '',
+                availability: formData.get('availability') || '',
+                message: formData.get('message') || '',
+                resume: resumeData
             };
 
-            const res = await fetch('/api/leads', {
+            // ✅ Use /api/send-email (WHICH ALREADY WORKS FOR HIRE FORM)
+            const res = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
             });
 
             if (res.ok) {
-                const responseData = await res.json();
-                if (responseData.success === false) throw new Error(responseData.error);
-
                 setStatus('success');
                 form.reset();
             } else {
-                const errText = await res.text();
-                throw new Error(errText);
+                setStatus('error');
             }
         } catch (err) {
-            console.error('❌ Final Error:', err);
-            alert('Error: ' + err.message);
+            console.error('Final Error:', err);
             setStatus('error');
         }
     }
@@ -85,7 +80,7 @@ export default function ApplyForm({ t, lang }) {
         return (
             <div className={styles.success}>
                 <h3>{t.success}</h3>
-                <button onClick={() => setStatus('idle')} className={styles.linkButton}>
+                <button onClick={() => setStatus('idle')} className={styles.linkButton} style={{ marginTop: '1rem', background: 'transparent', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}>
                     Submit another
                 </button>
             </div>
