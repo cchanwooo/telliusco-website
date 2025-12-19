@@ -63,13 +63,14 @@ export async function POST(request) {
             body: JSON.stringify({ ...payload, notificationEmails: notificationEmails.join(',') }),
         });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Apps Script Error:', response.status, errorText);
-            return NextResponse.json({ success: false, error: 'Webhook failed' }, { status: 500 });
-        }
+        const result = await response.json();
 
-        return NextResponse.json({ success: true });
+        if (response.ok && result.success !== false) {
+            return NextResponse.json({ success: true });
+        } else {
+            console.error('Apps Script Error Response:', result);
+            return NextResponse.json({ success: false, error: result.error || 'Webhook failed' }, { status: 500 });
+        }
 
     } catch (error) {
         console.error('API Error:', error);
