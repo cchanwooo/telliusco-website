@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-    // 💡 Hire/Apply 분리 및 칸 맞춤 기능이 포함된 진짜 최종 URL
-    const webhookUrl = "https://script.google.com/macros/s/AKfycbzXSYEvTrFirEbNapW5fCDytBd3IitNNy2hQ6u7y04oAE6qJqVCYD2bB2ub1joCnKoJ/exec";
+    // 💡 Hire/Apply 완벽 분리 및 컬럼 매핑 고정된 최종 URL
+    const webhookUrl = "https://script.google.com/macros/s/AKfycbxOXYQpxORuv01oTk5cnjlX1v7LY4ByOVQGFpdGdOJHzyuCo6WiA0UIdjYWQci97mkI/exec";
 
     if (!webhookUrl) {
         console.error('GOOGLE_SHEET_WEBHOOK is missing in environment variables');
