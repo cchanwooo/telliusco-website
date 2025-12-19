@@ -1,36 +1,36 @@
 import { NextResponse } from 'next/server';
 
-const APPS_SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbwaw22nvNnjiUz8v3G3wGvkUiJNlShi-Tv2FWzCjPGV4BzfQ_-2nFVCds521BeRVCFB/exec';
-
 export async function POST(request) {
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwaw22nvNnjiUz8v3G3wGvkUiJNlShi-Tv2FWzCjPGV4BzfQ_-2nFVCds521BeRVCFB/exec';
+
     try {
-        const payload = await request.json();
+        const body = await request.json();
+        const { type, lang, source, data } = body;
+
+        // 💡 핵심: 앱스 스크립트가 인식하기 쉽게 모든 필드를 최상위로 끌어올림 (Flattening)
+        const finalPayload = {
+            type,
+            lang,
+            source,
+            ...data, // fullName, email, phone, resume 등이 최상위로 감
+        };
+
+        console.log(`Forwarding to Apps Script. Resume present: ${!!finalPayload.resume}`);
 
         const response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            // ⚠️ Apps Script 쪽 응답이 느릴 수 있으면 아래 timeout은 프론트/배포 환경에 따라 별도 처리 필요
+            body: JSON.stringify(finalPayload), // 순수 JSON 문자열로 전송
         });
 
-        const text = await response.text();
+        const resultText = await response.text();
+        return new NextResponse(resultText, {
+            status: response.status,
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-        // Apps Script가 JSON으로 정상 반환하면 JSON으로 파싱, 아니면 그대로 리턴
-        try {
-            const json = JSON.parse(text);
-            return NextResponse.json(json, { status: response.status });
-        } catch {
-            return NextResponse.json(
-                { success: response.ok, raw: text },
-                { status: response.status }
-            );
-        }
     } catch (error) {
         console.error('API Route Error:', error);
-        return NextResponse.json(
-            { success: false, error: error?.message || String(error) },
-            { status: 500 }
-        );
+        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 }
