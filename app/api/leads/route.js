@@ -1,43 +1,25 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK;
-
-    if (!webhookUrl) {
-        console.error('GOOGLE_SHEET_WEBHOOK is missing');
-        return NextResponse.json({ success: false, error: 'Config missing' }, { status: 500 });
-    }
-
     try {
+        // 1. 요청 데이터를 변수에 저장
         const payload = await request.json();
 
-        console.log(`Forwarding lead to Google Sheet (${payload.type}):`, {
-            ...payload,
-            data: {
-                ...payload.data,
-                resume: payload.data?.resume ? {
-                    filename: payload.data.resume.filename,
-                    base64Length: payload.data.resume.base64.length
-                } : null
-            }
-        });
-
-        const response = await fetch(webhookUrl, {
+        // 2. 위에서 확인한 정확한 Apps Script URL로 전송
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwaw22nvNnjiUz8v3G3wGvkUiJNlShi-Tv2FWzCjPGV4BzfQ_-2nFVCds521BeRVCFB/exec', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // ⚠️ 객체를 문자열로 변환하여 전송 (데이터 유실 방지 핵심)
+            body: JSON.stringify(payload)
         });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Apps Script Error:', response.status, errorText);
-            return NextResponse.json({ success: false, error: 'Webhook failed' }, { status: 500 });
-        }
-
-        return NextResponse.json({ success: true });
+        const result = await response.json();
+        return NextResponse.json(result);
 
     } catch (error) {
-        console.error('API Error:', error);
-        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+        console.error("API Route Error:", error);
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
