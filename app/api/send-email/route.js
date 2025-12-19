@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
-    // 💡 Hire/Apply 분할 및 상세 이메일 기능이 포함된 최신 URL
-    const webhookUrl = "https://script.google.com/macros/s/AKfycbRj2v4ALeeIeMlJ9vWIsYhVRmAEdlZr5-OtJSUHD55v0FEJUzHz2ejYIcGryW_QDLb/exec";
+    // 💡 최신 활성화된 구글 앱스 스크립트 배포 URL
+    const webhookUrl = "https://script.google.com/macros/s/AKfycbz106w2aFwAilBnBo7M3fedm3JC_B0Tmg6zG2F4oiY_b_0wuMy281SBxrfS2pMV1RWf/exec";
 
     if (!webhookUrl) {
         console.error('GOOGLE_SHEET_WEBHOOK is missing in environment variables');
