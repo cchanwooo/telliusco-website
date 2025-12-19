@@ -6,38 +6,40 @@ import styles from './Form.module.css';
 export default function ApplyForm({ t, lang }) {
     const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
-    // Helper function to convert file to base64
-    const fileToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
+    const fileToBase64 = (file) =>
+        new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onload = () => resolve({
-                base64: reader.result.split(',')[1],
-                filename: file.name,
-                mimeType: file.type
-            });
-            reader.onerror = (error) => reject(error);
+            reader.onload = () => {
+                const result = reader.result || '';
+                const base64 = String(result).split(',')[1] || '';
+                resolve({
+                    base64,
+                    filename: file.name,
+                    mimeType: file.type || 'application/octet-stream',
+                });
+            };
+            reader.onerror = reject;
         });
-    };
 
     async function handleSubmit(e) {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const resumeFile = formData.get('resume');
+        const resumeFile = formData.get('resume'); // File object
 
-        // 1. Validation: File Type & Size (2MB Limit)
-        if (resumeFile && resumeFile.size > 0) {
+        // Validate resume (optional)
+        if (resumeFile && resumeFile instanceof File && resumeFile.size > 0) {
             const allowedTypes = [
                 'application/pdf',
                 'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             ];
             if (!allowedTypes.includes(resumeFile.type)) {
                 alert('Only PDF, DOC, and DOCX files are allowed.');
                 return;
             }
-            if (resumeFile.size > 2 * 1024 * 1024) { // 2MB
+            if (resumeFile.size > 2 * 1024 * 1024) {
                 alert('File size must be 2MB or less.');
                 return;
             }
@@ -46,37 +48,48 @@ export default function ApplyForm({ t, lang }) {
         setStatus('submitting');
 
         try {
-            // Convert resume if exists
             let resumeData = null;
-            if (resumeFile && resumeFile.size > 0) {
+
+            if (resumeFile && resumeFile instanceof File && resumeFile.size > 0) {
                 resumeData = await fileToBase64(resumeFile);
-                console.log(`Resume detected: ${resumeData.filename}, Base64 length: ${resumeData.base64.length}`);
+                console.log(
+                    `✅ Resume detected: ${resumeData.filename}, base64 length: ${resumeData.base64.length}`
+                );
+
+                // Safety: base64 empty면 업로드 실패로 처리
+                if (!resumeData.base64) {
+                    throw new Error('Resume base64 conversion failed (empty base64).');
+                }
             } else {
-                console.log('No resume uploaded');
+                console.log('ℹ️ No resume uploaded');
             }
 
-            // Final JSON Payload
             const payload = {
-                type: 'apply',
-                lang: lang || 'EN',
+                type: 'apply',                 // ✅ 오타 방지 (applyy 금지)
+                lang: (lang || 'EN'),
                 source: 'Apply Page',
                 data: {
-                    fullName: formData.get('fullName'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    cityState: formData.get('location'),
-                    desiredRole: formData.get('role'),
-                    availability: formData.get('availability'),
-                    message: formData.get('message'),
-                    resume: resumeData
-                }
+                    fullName: formData.get('fullName') || '',
+                    email: formData.get('email') || '',
+                    phone: formData.get('phone') || '',
+                    cityState: formData.get('location') || '',
+                    desiredRole: formData.get('role') || '',
+                    availability: formData.get('availability') || '',
+                    message: formData.get('message') || '',
+                    resume: resumeData,          // ✅ 여기로 들어가야 함 (null 가능)
+                },
             };
+
+            console.log('📦 Sending payload keys:', Object.keys(payload.data));
 
             const res = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
             });
+
+            const text = await res.text();
+            console.log('🧾 /api/leads response:', res.status, text);
 
             if (res.ok) {
                 setStatus('success');
@@ -85,7 +98,7 @@ export default function ApplyForm({ t, lang }) {
                 setStatus('error');
             }
         } catch (err) {
-            console.error('Submission error:', err);
+            console.error('❌ Submission error:', err);
             setStatus('error');
         }
     }
@@ -94,7 +107,16 @@ export default function ApplyForm({ t, lang }) {
         return (
             <div className={styles.success}>
                 <h3>{t.success}</h3>
-                <button onClick={() => setStatus('idle')} style={{ marginTop: '1rem', background: 'transparent', border: 'none', textDecoration: 'underline', cursor: 'pointer' }}>
+                <button
+                    onClick={() => setStatus('idle')}
+                    style={{
+                        marginTop: '1rem',
+                        background: 'transparent',
+                        border: 'none',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                    }}
+                >
                     Submit another
                 </button>
             </div>
@@ -142,7 +164,13 @@ export default function ApplyForm({ t, lang }) {
 
             <div className={styles.group}>
                 <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
-                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+                <input
+                    className={styles.input}
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf,.doc,.docx"
+                />
             </div>
 
             <div className={styles.group}>
