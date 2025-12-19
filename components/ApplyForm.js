@@ -6,42 +6,15 @@ import styles from './Form.module.css';
 export default function ApplyForm({ t, lang }) {
     const [status, setStatus] = useState('idle');
 
-    const fileToBase64 = (file) =>
-        new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                const base64 = reader.result.split(',')[1];
-                resolve({
-                    base64,
-                    filename: file.name,
-                    mimeType: file.type || 'application/octet-stream',
-                });
-            };
-            reader.onerror = (error) => reject(error);
-        });
-
     async function handleSubmit(e) {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(form);
-        const resumeFile = form.resume?.files?.[0];
-
-        // 1. Validation
-        if (resumeFile && resumeFile.size > 2 * 1024 * 1024) {
-            alert('File is too large! (Limit 2MB)');
-            return;
-        }
 
         setStatus('submitting');
 
         try {
-            let resumeData = null;
-            if (resumeFile && resumeFile.size > 0) {
-                resumeData = await fileToBase64(resumeFile);
-            }
-
-            // ✅ Flatten payload (LIKE HireForm.js)
+            // ✅ Temporarily disabled resume processing to avoid Google Drive errors
             const payload = {
                 type: 'apply',
                 lang: lang || 'EN',
@@ -54,10 +27,9 @@ export default function ApplyForm({ t, lang }) {
                 desiredRole: formData.get('role') || '',
                 availability: formData.get('availability') || '',
                 message: formData.get('message') || '',
-                resume: resumeData
+                resume: null // Disabled
             };
 
-            // ✅ Use /api/send-email (WHICH ALREADY WORKS FOR HIRE FORM)
             const res = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -126,11 +98,7 @@ export default function ApplyForm({ t, lang }) {
                 <input className={styles.input} type="text" id="availability" name="availability" />
             </div>
 
-            <div className={styles.group}>
-                <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
-                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
-            </div>
-
+            {/* Resume input hidden temporarily to prioritize basic data flow */}
             <div className={styles.group}>
                 <label className={styles.label} htmlFor="message">{t.message}</label>
                 <textarea className={styles.textarea} id="message" name="message"></textarea>
