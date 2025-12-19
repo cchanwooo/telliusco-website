@@ -13,13 +13,38 @@ export default function ApplyForm({ t, lang }) {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
 
+        // Handle File Upload
+        const resumeFile = formData.get('resume');
+        let resumeData = null;
+
+        if (resumeFile && resumeFile.size > 0) {
+            try {
+                resumeData = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve({
+                        base64: reader.result.split(',')[1],
+                        filename: resumeFile.name,
+                        mimeType: resumeFile.type
+                    });
+                    reader.onerror = reject;
+                    reader.readAsDataURL(resumeFile);
+                });
+            } catch (err) {
+                console.error("File reading error:", err);
+            }
+        }
+
         try {
             const res = await fetch('/api/send-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ type: 'apply', data, lang }),
+                body: JSON.stringify({
+                    type: 'apply',
+                    data: { ...data, resume: resumeData },
+                    lang
+                }),
             });
 
             if (res.ok) {
@@ -82,6 +107,11 @@ export default function ApplyForm({ t, lang }) {
             <div className={styles.group}>
                 <label className={styles.label} htmlFor="availability">{t.availability}</label>
                 <input className={styles.input} type="text" id="availability" name="availability" />
+            </div>
+
+            <div className={styles.group}>
+                <label className={styles.label} htmlFor="resume">{t.uploadResume || 'Upload Resume (optional)'}</label>
+                <input className={styles.input} type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
             </div>
 
             <div className={styles.group}>

@@ -19,6 +19,7 @@
         "message": "Mensaje Adicional",
         "companyName": "Nombre de la Empresa",
         "contactName": "Persona de Contacto",
+        "uploadResume": "Subir currículum (opcional)",
         "company": "Nombre de la empresa",
         "contact": "Persona de contacto",
         "roleNeeded": "Puesto requerido",

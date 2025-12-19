@@ -19,6 +19,7 @@
     "message": "Additional Message",
     "companyName": "Company Name",
     "contactName": "Contact Person",
+    "uploadResume": "Upload Resume (optional)",
     "company": "Company Name",
     "contact": "Contact Person",
     "roleNeeded": "Role Needed",

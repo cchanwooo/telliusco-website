@@ -31,6 +31,7 @@ export async function POST(request) {
                 desiredRole: data.role || data.desiredRole || "",
                 availability: data.availability || "",
                 message: data.message || "",
+                resume: data.resume || null,
                 source: "Apply Page"
             };
         } else if (type === 'hire') {

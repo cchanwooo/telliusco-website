@@ -19,6 +19,7 @@
         "message": "추가 메시지",
         "companyName": "회사명",
         "contactName": "담당자 성명",
+        "uploadResume": "이력서 업로드 (선택 사항)",
         "company": "회사명",
         "contact": "담당자",
         "roleNeeded": "필요 포지션",
