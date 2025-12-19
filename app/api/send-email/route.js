@@ -1,3 +1,4 @@
+// Final deployment trigger for send-email API
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {
