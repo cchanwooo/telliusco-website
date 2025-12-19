@@ -26,15 +26,19 @@ export default function ApplyForm({ t, lang }) {
         const formData = new FormData(e.target);
         const resumeFile = formData.get('resume');
 
-        // 1. Validation: File Type & Size
+        // 1. Validation: File Type & Size (2MB Limit)
         if (resumeFile && resumeFile.size > 0) {
-            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const allowedTypes = [
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ];
             if (!allowedTypes.includes(resumeFile.type)) {
                 alert('Only PDF, DOC, and DOCX files are allowed.');
                 return;
             }
-            if (resumeFile.size > 5 * 1024 * 1024) { // 5MB
-                alert('File size must be less than 5MB.');
+            if (resumeFile.size > 2 * 1024 * 1024) { // 2MB
+                alert('File size must be 2MB or less.');
                 return;
             }
         }
@@ -42,29 +46,33 @@ export default function ApplyForm({ t, lang }) {
         setStatus('submitting');
 
         try {
-            // Prepare text data
-            const textData = {};
-            formData.forEach((value, key) => {
-                if (key !== 'resume') textData[key] = value;
-            });
-
             // Convert resume if exists
             let resumeData = null;
             if (resumeFile && resumeFile.size > 0) {
                 resumeData = await fileToBase64(resumeFile);
+                console.log(`Resume detected: ${resumeData.filename}, Base64 length: ${resumeData.base64.length}`);
+            } else {
+                console.log('No resume uploaded');
             }
 
-            // Final JSON Payload (Apps Script only parses JSON)
+            // Final JSON Payload
             const payload = {
                 type: 'apply',
                 lang: lang || 'EN',
+                source: 'Apply Page',
                 data: {
-                    ...textData,
+                    fullName: formData.get('fullName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    cityState: formData.get('location'),
+                    desiredRole: formData.get('role'),
+                    availability: formData.get('availability'),
+                    message: formData.get('message'),
                     resume: resumeData
                 }
             };
 
-            const res = await fetch('/api/send-email', {
+            const res = await fetch('/api/leads', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
