@@ -12,8 +12,8 @@ export default function Header({ dictionary, lang }) {
                         <Image
                             src="/logo.png"
                             alt="Telliusco"
-                            width={150}
-                            height={40}
+                            width={220}
+                            height={60}
                             className={styles.logoImage}
                             priority
                         />
