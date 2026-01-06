@@ -3,9 +3,15 @@ import styles from './page.module.css'
 import { getDictionary } from '../../get-dictionary'
 
 export const metadata = {
-  title: 'Telliusco Staffing',
+  title: 'Telliusco Staffing | Reliable Workers in GA, AL, TX, TN',
+  description: 'Leading staffing agency. Solve workforce gaps quickly with screened, reliable workers.',
   openGraph: {
     title: 'Telliusco Staffing',
+    description: 'Leading staffing agency serving Georgia, Alabama, Texas, and Tennessee.',
+    url: 'https://telliusco.com',
+    siteName: 'Telliusco Staffing',
+    images: [{ url: '/logo.png' }],
+    type: 'website',
   },
 }
 
@@ -24,91 +30,120 @@ export default async function Home(props) {
             <h1 className={styles.title}>{t.heroTitle}</h1>
             <p className={styles.subtitle}>{t.heroSubtitle}</p>
             <div className={styles.ctaGroup}>
-              <Link href={`/${lang}/apply`} className="btn btn-primary btn-lg">
+              <Link href={`/${lang}/apply`} className={`btn btn-primary btn-lg ${styles.heroBtnApply}`}>
                 {t.ctaApply}
               </Link>
-              <Link href={`/${lang}/hire`} className="btn btn-accent btn-lg">
+              <Link href={`/${lang}/hire`} className={`btn btn-accent btn-lg ${styles.heroBtnHire}`}>
                 {t.ctaHire}
               </Link>
             </div>
+
+            <div className={styles.trustBadges}>
+              <span>✓ E-Verified</span>
+              <span>✓ Insured</span>
+              <span>✓ Local Experts</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. HOW WE HELP */}
+      {/* 2. SEGMENTATION (Seeker vs Employer) */}
       <section className={styles.howWeHelp}>
         <div className="container">
-          <h2 className={styles.sectionTitle}>{t.howWeHelp.title}</h2>
-          <div className={styles.helpGrid}>
-            <div className={styles.helpCard}>
-              <h3>{t.howWeHelp.seekerTitle}</h3>
+          <div className={styles.segmentGrid}>
+            <div className={`${styles.segmentCard} ${styles.seekerCard}`}>
+              <div className={styles.cardHeader}>
+                <h3>{t.howWeHelp.seekerTitle}</h3>
+                <div className={styles.icon}>👷</div>
+              </div>
               <p>{t.howWeHelp.seekerDesc}</p>
-              <Link href={`/${lang}/apply`} className={styles.textLink}>{dictionary.common.applyNow} →</Link>
+              <Link href={`/${lang}/apply`} className={styles.segmentLink}>
+                {dictionary.common.applyNow} &rarr;
+              </Link>
             </div>
-            <div className={styles.helpCard}>
-              <h3>{t.howWeHelp.employerTitle}</h3>
+            <div className={`${styles.segmentCard} ${styles.employerCard}`}>
+              <div className={styles.cardHeader}>
+                <h3>{t.howWeHelp.employerTitle}</h3>
+                <div className={styles.icon}>🏢</div>
+              </div>
               <p>{t.howWeHelp.employerDesc}</p>
-              <Link href={`/${lang}/hire`} className={styles.textLink}>{dictionary.common.requestTalent} →</Link>
+              <Link href={`/${lang}/hire`} className={styles.segmentLink}>
+                {dictionary.common.requestTalent} &rarr;
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. INDUSTRIES */}
+      {/* 3. CORE VALUES / WHY US */}
+      <section className={styles.featuresSection}>
+        <div className="container">
+          <h2 className={styles.sectionTitle}>{t.features.title}</h2>
+          <div className={styles.featureGrid}>
+            <div className={styles.featureItem}>
+              <div className={styles.featureIcon}>🛡️</div>
+              <h3>{t.features.safety}</h3>
+              <p>{t.features.safetyDesc}</p>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureIcon}>🤝</div>
+              <h3>{t.features.integrity}</h3>
+              <p>{t.features.integrityDesc}</p>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureIcon}>⚡</div>
+              <h3>{t.features.speed}</h3>
+              <p>{t.features.speedDesc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SERVICE AREAS */}
+      <section className={styles.locationsSection}>
+        <div className="container">
+          <div className={styles.locationHeader}>
+            <h2 className={styles.sectionTitleWhite}>{dictionary.locations.title}</h2>
+            <p className={styles.sectionSubtitleWhite}>{dictionary.locations.subtitle}</p>
+          </div>
+          <div className={styles.stateGrid}>
+            <Link href={`/${lang}/locations/ga`} className={styles.stateCard}>
+              <span className={styles.stateAbbr}>GA</span>
+              <span className={styles.stateName}>Georgia</span>
+            </Link>
+            <Link href={`/${lang}/locations/al`} className={styles.stateCard}>
+              <span className={styles.stateAbbr}>AL</span>
+              <span className={styles.stateName}>Alabama</span>
+            </Link>
+            <Link href={`/${lang}/locations/tx`} className={styles.stateCard}>
+              <span className={styles.stateAbbr}>TX</span>
+              <span className={styles.stateName}>Texas</span>
+            </Link>
+            <Link href={`/${lang}/locations/tn`} className={styles.stateCard}>
+              <span className={styles.stateAbbr}>TN</span>
+              <span className={styles.stateName}>Tennessee</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. INDUSTRIES */}
       <section className={styles.industries}>
         <div className="container">
           <h2 className={styles.sectionTitle}>{t.industries.title}</h2>
-          <div className={styles.industryGrid}>
-            <div className={styles.indCard}>🏭 {t.industries.mfg}</div>
-            <div className={styles.indCard}>📦 {t.industries.warehouse}</div>
-            <div className={styles.indCard}>💼 {t.industries.office}</div>
-            <div className={styles.indCard}>🚧 {t.industries.construction}</div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHY TELLIUSCO */}
-      <section className={styles.whySection}>
-        <div className="container">
-          <h2 className={styles.sectionTitle}>{t.why.title}</h2>
-          <div className={styles.whyGrid}>
-            <div className={styles.whyItem}>
-              <h3>⚡ {t.why.speed}</h3>
-              <p>{t.why.speedDesc}</p>
-            </div>
-            <div className={styles.whyItem}>
-              <h3>🔍 {t.why.screening}</h3>
-              <p>{t.why.screeningDesc}</p>
-            </div>
-            <div className={styles.whyItem}>
-              <h3>🛡️ {t.why.safety}</h3>
-              <p>{t.why.safetyDesc}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. LOCATIONS (Existing but updated text) */}
-      <section className={styles.statesSection}>
-        <div className="container">
-          <h2 className={styles.sectionTitle}>{dictionary.locations.title}</h2>
-          <p className={styles.sectionSubtitle}>{dictionary.locations.subtitle}</p>
-          <div className={styles.stateGrid}>
-            <Link href={`/${lang}/locations/ga`} className={styles.stateCard}>
-              <h3>Georgia</h3>
+          <div className={styles.indList}>
+            <Link href={`/${lang}/specialties/manufacturing`} className={styles.indItem}>
+              {t.industries.mfg} <span>&rarr;</span>
             </Link>
-            <Link href={`/${lang}/locations/al`} className={styles.stateCard}>
-              <h3>Alabama</h3>
+            <Link href={`/${lang}/specialties/warehouse`} className={styles.indItem}>
+              {t.industries.warehouse} <span>&rarr;</span>
             </Link>
-            <Link href={`/${lang}/locations/tx`} className={styles.stateCard}>
-              <h3>Texas</h3>
+            <Link href={`/${lang}/specialties/clerical`} className={styles.indItem}>
+              {t.industries.office} <span>&rarr;</span>
             </Link>
-            <Link href={`/${lang}/locations/tn`} className={styles.stateCard}>
-              <h3>Tennessee</h3>
+            <Link href={`/${lang}/specialties/construction`} className={styles.indItem}>
+              {t.industries.construction} <span>&rarr;</span>
             </Link>
-          </div>
-          <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-            <Link href={`/${lang}/locations`} className="btn">{dictionary.common.readMore}</Link>
           </div>
         </div>
       </section>
@@ -120,21 +155,30 @@ export default async function Home(props) {
           <div className={styles.testGrid}>
             <div className={styles.testCard}>
               <p>"{t.testimonials.q1}"</p>
-              <span>— {t.testimonials.a1}</span>
+              <div className={styles.testAuthor}>
+                <div className={styles.avatar}></div>
+                <span>{t.testimonials.a1}</span>
+              </div>
             </div>
             <div className={styles.testCard}>
               <p>"{t.testimonials.q2}"</p>
-              <span>— {t.testimonials.a2}</span>
+              <div className={styles.testAuthor}>
+                <div className={styles.avatar}></div>
+                <span>{t.testimonials.a2}</span>
+              </div>
             </div>
             <div className={styles.testCard}>
               <p>"{t.testimonials.q3}"</p>
-              <span>— {t.testimonials.a3}</span>
+              <div className={styles.testAuthor}>
+                <div className={styles.avatar}></div>
+                <span>{t.testimonials.a3}</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. FINAL CTA */}
+      {/* 7. CTA */}
       <section className={styles.finalCta}>
         <div className="container">
           <h2>{t.finalCta.title}</h2>
@@ -143,13 +187,9 @@ export default async function Home(props) {
             <Link href={`/${lang}/apply`} className="btn btn-primary btn-lg">
               {t.ctaApply}
             </Link>
-            <Link href={`/${lang}/hire`} className="btn btn-accent btn-lg">
-              {t.ctaHire}
-            </Link>
           </div>
         </div>
       </section>
-
     </div>
   )
 }

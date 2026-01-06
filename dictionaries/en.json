@@ -33,27 +33,71 @@
     "sending": "Sending..."
   },
   "nav": {
-    "findWork": "Find Work",
-    "hireTalent": "Hire Talent",
-    "specialties": "Specialties",
-    "locations": "Locations",
-    "about": "About",
-    "contact": "Contact",
-    "applyNow": "Apply Now",
-    "requestTalent": "Request Talent"
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "safety": "Safety & Compliance",
+      "testimonials": "Testimonials"
+    },
+    "solutions": {
+      "title": "Solutions",
+      "overview": "Employer Solutions",
+      "temporary": "Temporary Staffing",
+      "tempToHire": "Temp-to-Hire",
+      "directHire": "Direct Hire",
+      "managed": "On-site Managed"
+    },
+    "industries": {
+      "title": "Industries",
+      "overview": "All Industries",
+      "manufacturing": "Manufacturing",
+      "warehouse": "Warehouse & Logistics",
+      "clerical": "Clerical & Admin",
+      "construction": "Construction Support"
+    },
+    "locations": {
+      "title": "Locations",
+      "overview": "All Locations",
+      "ga": "Georgia",
+      "al": "Alabama",
+      "tx": "Texas",
+      "tn": "Tennessee"
+    },
+    "findWork": {
+      "title": "Find Work",
+      "apply": "Apply Now",
+      "jobs": "Search Jobs"
+    },
+    "resources": {
+      "title": "Resources",
+      "blog": "Blog & Guides"
+    },
+    "contact": "Contact"
   },
   "footer": {
     "statesServed": "States Served",
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
-    "mission": "Connecting reliable people with great companies across the Southeast."
+    "mission": "Connecting reliable people with great companies across the Southeast.",
+    "quickLinks": "Quick Links",
+    "employers": "For Employers",
+    "seekers": "For Job Seekers"
   },
   "home": {
     "heroTitle": "Solve Workforce Gaps Quickly with Screened, Reliable Workers",
-    "heroSubtitle": "Trustworthy staffing in Georgia, Alabama, Texas, and Tennessee.",
+    "heroSubtitle": "Reliable. Fast. Local. Staffing services in Georgia, Alabama, Texas, and Tennessee.",
     "ctaApply": "Find a Job",
     "ctaHire": "Request Talent",
+    "features": {
+      "title": "Why Choose Telliusco?",
+      "safety": "Safety First",
+      "safetyDesc": "Comprehensive safety orientation and compliance checks.",
+      "integrity": "Integrity",
+      "integrityDesc": "Honest communication and transparent practices.",
+      "speed": "Speed",
+      "speedDesc": "Rapid response times to keep your business moving."
+    },
     "howWeHelp": {
       "title": "How We Help",
       "seekerTitle": "Job Seekers",
@@ -67,15 +111,6 @@
       "warehouse": "Warehouse & Light Industrial",
       "office": "Clerical & Office",
       "construction": "Construction Support"
-    },
-    "why": {
-      "title": "Why Telliusco?",
-      "speed": "Fast Response",
-      "speedDesc": "We fill urgent orders quickly so your production never stops.",
-      "screening": "Rigorous Screening",
-      "screeningDesc": "We verify skills, eligibility, and safety awareness for every candidate.",
-      "safety": "Safety First",
-      "safetyDesc": "We prioritize safe work environments and comprehensive orientation."
     },
     "testimonials": {
       "title": "What People Say",

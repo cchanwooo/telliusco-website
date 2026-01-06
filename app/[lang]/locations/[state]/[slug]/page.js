@@ -28,6 +28,11 @@ export async function generateMetadata(props) {
         description: r(t.heroSubtitle),
         alternates: {
             canonical: `/locations/${params.state}/${params.slug}`,
+        },
+        openGraph: {
+            title: r(t.heroTitle),
+            description: r(t.heroSubtitle),
+            type: 'website',
         }
     }
 }
@@ -46,8 +51,82 @@ export default async function CityPage(props) {
     // Helper to replace variables
     const r = (text) => text.replace(/{city}/g, cityData.city).replace(/{state}/g, cityData.stateData || cityData.stateCode)
 
+    // Schema Data
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://telliusco.com/${lang}` },
+                    { "@type": "ListItem", "position": 2, "name": "Locations", "item": `https://telliusco.com/${lang}/locations` },
+                    { "@type": "ListItem", "position": 3, "name": cityData.state, "item": `https://telliusco.com/${lang}/locations/${state}` },
+                    { "@type": "ListItem", "position": 4, "name": cityData.city, "item": `https://telliusco.com/${lang}/locations/${state}/${slug}` }
+                ]
+            },
+            {
+                "@type": "LocalBusiness",
+                "name": `Telliusco Staffing - ${cityData.city}`,
+                "image": "https://telliusco.com/logo.png",
+                "telephone": dictionary.contactInfo.phone,
+                "url": `https://telliusco.com/${lang}/locations/${state}/${slug}`,
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": cityData.city,
+                    "addressRegion": cityData.stateCode,
+                    "addressCountry": "US"
+                },
+                "areaServed": {
+                    "@type": "City",
+                    "name": cityData.city
+                },
+                "priceRange": "$$"
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q1),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a1) }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q2),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a2) }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q3),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a3) }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q4),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a4) }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q5),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a5) }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": r(t.faq.q6),
+                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a6) }
+                    }
+                ]
+            }
+        ]
+    }
+
     return (
         <div className={styles.container}>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+            />
+
             {/* HERO SECTION */}
             <section className={styles.hero}>
                 <div className="container">
@@ -88,12 +167,12 @@ export default async function CityPage(props) {
                         </div>
 
                         <div className={styles.categories}>
-                            <h3>{dictionary.nav.specialties}</h3>
+                            <h3>{dictionary.nav.industries.overview}</h3>
                             <ul>
-                                <li>{dictionary.home.industries.office}</li>
-                                <li>{dictionary.home.industries.warehouse}</li>
-                                <li>{dictionary.home.industries.mfg}</li>
-                                <li>{dictionary.home.industries.construction}</li>
+                                <li>{dictionary.nav.industries.clerical}</li>
+                                <li>{dictionary.nav.industries.warehouse}</li>
+                                <li>{dictionary.nav.industries.manufacturing}</li>
+                                <li>{dictionary.nav.industries.construction}</li>
                             </ul>
                         </div>
                     </div>
@@ -156,47 +235,6 @@ export default async function CityPage(props) {
             <section className={styles.sectionE}>
                 <div className="container">
                     <h2>FAQ</h2>
-                    <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={{
-                            __html: JSON.stringify({
-                                "@context": "https://schema.org",
-                                "@type": "FAQPage",
-                                "mainEntity": [
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q1),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a1) }
-                                    },
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q2),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a2) }
-                                    },
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q3),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a3) }
-                                    },
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q4),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a4) }
-                                    },
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q5),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a5) }
-                                    },
-                                    {
-                                        "@type": "Question",
-                                        "name": r(t.faq.q6),
-                                        "acceptedAnswer": { "@type": "Answer", "text": r(t.faq.a6) }
-                                    }
-                                ]
-                            })
-                        }}
-                    />
                     <div className={styles.faqGrid}>
                         <details><summary>{r(t.faq.q1)}</summary><p>{r(t.faq.a1)}</p></details>
                         <details><summary>{r(t.faq.q2)}</summary><p>{r(t.faq.a2)}</p></details>

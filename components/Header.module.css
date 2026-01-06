@@ -1,53 +1,294 @@
 .header {
     background-color: var(--white);
     border-bottom: 1px solid #eaeaea;
-    padding: 1rem 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    z-index: 1000;
     position: sticky;
     top: 0;
-    z-index: 1000;
+}
+
+.sticky {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0;
 }
 
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem;
+    max-width: 1400px;
+    /* Wider for deep menu */
+    margin: 0 auto;
 }
 
 .logoImage {
     height: auto;
     width: auto;
-    max-height: 70px;
+    max-height: 50px;
     object-fit: contain;
 }
 
+/* Navigation */
 .nav {
+    display: none;
+    /* Mobile first hidden */
+}
+
+/* Desktop Styles */
+@media (min-width: 992px) {
+    .nav {
+        display: block;
+    }
+
+    .navList {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navItem {
+        position: relative;
+    }
+
+    .navLink,
+    .navLinkSimple {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        font-weight: 500;
+        color: var(--text-color);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-family: inherit;
+    }
+
+    .navLink:hover,
+    .navLinkSimple:hover {
+        color: var(--primary-color);
+    }
+
+    .arrow {
+        font-size: 0.7rem;
+        opacity: 0.5;
+    }
+
+    /* Dropdown */
+    .dropdown {
+        display: none;
+        /* Controlled by React or CSS hover as fallback */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        min-width: 220px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 0.5rem 0;
+        z-index: 100;
+    }
+
+    .dropdownOpen {
+        /* Used by React state */
+        display: block;
+    }
+
+    /* Hover fallback if React messes up, but React state manages it mainly */
+    .navItem:hover .dropdown {
+        display: block;
+    }
+
+    .dropdown li {
+        list-style: none;
+    }
+
+    .dropdown li a {
+        display: block;
+        padding: 0.75rem 1.25rem;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        transition: background 0.1s;
+    }
+
+    .dropdown li a:hover {
+        background-color: var(--light-gray);
+        color: var(--primary-color);
+    }
+
+    .mobileActions {
+        display: none;
+    }
+}
+
+/* Actions (Desktop) */
+.actions {
     display: none;
 }
 
-.navList {
+@media (min-width: 992px) {
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .ctaGroup {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .ctaBtn {
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+
+    .ctaApply {
+        background-color: var(--primary-color);
+        color: white;
+        border: 1px solid var(--primary-color);
+    }
+
+    .ctaApply:hover {
+        background-color: #00153D;
+    }
+
+    .ctaRequest {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    .ctaRequest:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+}
+
+/* Mobile Toggle */
+.mobileToggle {
     display: flex;
-    list-style: none;
-    gap: 1.5rem;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
 }
 
-.navList a {
-    font-weight: 500;
-    color: var(--text-color);
-    font-size: 0.95rem;
+@media (min-width: 992px) {
+    .mobileToggle {
+        display: none;
+    }
 }
 
-.navList a:hover {
-    color: var(--primary-color);
+.bar,
+.barOpen {
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-color);
+    transition: all 0.3s;
 }
 
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.barOpen:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
 }
 
-@media (min-width: 900px) {
+.barOpen:nth-child(2) {
+    opacity: 0;
+}
+
+.barOpen:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu Overlay */
+@media (max-width: 991px) {
     .nav {
         display: block;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        padding: 5rem 1.5rem 2rem;
+        transition: right 0.3s ease-in-out;
+        overflow-y: auto;
+    }
+
+    .navOpen {
+        right: 0;
+    }
+
+    .navList {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .navItem {
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .navLink,
+    .navLinkSimple {
+        font-size: 1.1rem;
+        padding: 1rem 0;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        font-weight: 600;
+    }
+
+    .dropdown {
+        display: none;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .dropdownOpen {
+        display: block;
+    }
+
+    .dropdown li a {
+        display: block;
+        padding: 0.5rem 0;
+        color: #666;
+    }
+
+    .mobileActions {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mobileActions .btn {
+        text-align: center;
+        width: 100%;
+    }
+
+    .mobileLang {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
     }
 }
