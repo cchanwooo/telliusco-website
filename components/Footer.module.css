@@ -1,9 +1,9 @@
 .footer {
-    background-color: #0d1b2a;
-    /* Dark Navy/Black */
+    background-color: var(--primary-color);
     color: #e0e0e0;
     padding: 4rem 0 2rem;
     font-size: 0.95rem;
+    border-top: 5px solid var(--accent-color);
 }
 
 .container {
@@ -24,7 +24,7 @@
     margin-bottom: 1.25rem;
     font-size: 1.1rem;
     font-weight: 600;
-    border-bottom: 2px solid var(--accent-color, #FFB81C);
+    border-bottom: 2px solid var(--accent-color);
     display: inline-block;
     padding-bottom: 0.5rem;
 }
@@ -39,13 +39,13 @@
 }
 
 .col ul li a {
-    color: #b0c4de;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 .col ul li a:hover {
-    color: var(--accent-color, #FFB81C);
+    color: var(--accent-color);
     padding-left: 5px;
 }
 
@@ -58,12 +58,13 @@
 .tagline {
     font-style: italic;
     margin-bottom: 1rem;
-    color: #ccc;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .address {
     font-style: normal;
     line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .address a {
@@ -72,14 +73,14 @@
 }
 
 .bottom {
-    border-top: 1px solid #2a3b4c;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
     font-size: 0.85rem;
-    color: #8892b0;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .legal {
@@ -89,6 +90,7 @@
 
 .legal a:hover {
     text-decoration: underline;
+    color: white;
 }
 
 @media (max-width: 768px) {
