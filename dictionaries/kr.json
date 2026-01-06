@@ -33,6 +33,7 @@
         "sending": "전송중..."
     },
     "nav": {
+        "requestTalent": "인재 요청",
         "company": {
             "title": "회사소개",
             "about": "Telliusco 소개",

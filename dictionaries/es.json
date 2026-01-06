@@ -33,6 +33,7 @@
         "sending": "Enviando..."
     },
     "nav": {
+        "requestTalent": "Solicitar Talento",
         "company": {
             "title": "Empresa",
             "about": "Nosotros",
