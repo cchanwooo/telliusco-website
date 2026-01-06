@@ -5,11 +5,20 @@ import { getCityBySlug, cities } from '../../../../../data/cities'
 import styles from './page.module.css'
 
 export async function generateStaticParams() {
-    return cities.map((city) => ({
-        lang: 'en',
-        state: city.stateCode.toLowerCase(),
-        slug: city.slug,
-    }))
+    const langs = ['en', 'es', 'kr'];
+    let params = [];
+
+    cities.forEach((city) => {
+        langs.forEach((lang) => {
+            params.push({
+                lang: lang,
+                state: city.stateCode.toLowerCase(),
+                slug: city.slug,
+            });
+        });
+    });
+
+    return params;
 }
 
 export async function generateMetadata(props) {

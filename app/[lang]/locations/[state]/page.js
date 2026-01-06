@@ -7,7 +7,7 @@ import styles from './page.module.css'
 // Generate static params for all states
 export async function generateStaticParams() {
     const states = ['ga', 'al', 'tx', 'tn']
-    const langs = ['en', 'ko', 'es']
+    const langs = ['en', 'kr', 'es']
 
     const params = []
     for (const lang of langs) {
