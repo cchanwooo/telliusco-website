@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     // 💡 권한 승인 완료된 최신 구글 앱스 스크립트 URL
-    const webhookUrl = "https://script.google.com/macros/s/AKfycbxiGKQ5Zvc0ahC3s4Ing4agPD58BD1RoN0okUeiRcog3WstFKHwhwHWZF6oJaey23cG/exec";
+    const webhookUrl = "https://script.google.com/macros/s/AKfycby6Y9yfNuRaZPPhzNoowX8uAA-USd8bwP9qoDtO64PeLJNEZbogmXh5xTIlLM9gjos/exec";
 
     if (!webhookUrl) {
         console.error('GOOGLE_SHEET_WEBHOOK is missing in environment variables');
